@@ -1,0 +1,26 @@
+{
+  "name": "country-emoji",
+  "version": "1.0.0",
+  "description": "Converts between country names, country codes and their flag emojis",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/meeDamian/country-emoji.git"
+  },
+  "keywords": [
+    "flag",
+    "emoji",
+    "country",
+    "ISO3166-1",
+    "ES6"
+  ],
+  "author": "Damian Mee <mee.damian@gmail.com> (https://meedamian.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meeDamian/country-emoji/issues"
+  },
+  "homepage": "https://github.com/meeDamian/country-emoji#readme"
+}
