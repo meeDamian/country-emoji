@@ -27,12 +27,11 @@
     "ava": "^0.16.0",
     "xo": "^0.16.0"
   },
-  "dependencies": {
-    "mee": "^0.11.3"
-  },
   "xo": {
     "esnext": true,
-    "envs": ["node"],
+    "envs": [
+      "node"
+    ],
     "space": true
   }
 }
