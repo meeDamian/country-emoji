@@ -1,8 +1,8 @@
 {
   "name": "country-emoji",
   "version": "1.0.0",
-  "description": "Converts between country names, country codes and their flag emojis",
-  "main": "index.js",
+  "description": "Converts between country names, ISO 3166-1 codes and flag emojis.",
+  "main": "main.js",
   "scripts": {
     "test": "xo && ava"
   },
@@ -22,5 +22,17 @@
   "bugs": {
     "url": "https://github.com/meeDamian/country-emoji/issues"
   },
-  "homepage": "https://github.com/meeDamian/country-emoji#readme"
+  "homepage": "https://github.com/meeDamian/country-emoji#readme",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "xo": "^0.16.0"
+  },
+  "dependencies": {
+    "mee": "^0.11.3"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": ["node"],
+    "space": true
+  }
 }
