@@ -4,7 +4,7 @@
   "description": "Converts between country names, ISO 3166-1 codes and flag emojis.",
   "main": "main.js",
   "scripts": {
-    "test": "xo && nyc ava && nyc report --reporter=text-lcov > coverage.lcov"
+    "test": "xo && nyc ava && nyc report --reporter=text-lcov > coverage/lcov.info"
   },
   "repository": {
     "type": "git",
