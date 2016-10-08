@@ -11,14 +11,14 @@ function print(str, out, comment = '') {
 const {flag, code, name} = require('./main.js');
 
 print('flag(\'CL\')', flag('CL'));
+print('code(\'🇨🇦\')', code('🇨🇦'));
+print('name(\'🇶🇦\')', name('🇶🇦'));
 print('flag(\'Taiwan number one!\')', flag('Taiwan number one!'), 'can extract name from string…');
 print('flag(\'Congo and Burma\')', flag('Congo and Burma'), '…but only if there\'s no ambiguity');
 print('flag(\'Republic of Tanzania\')', flag('Republic of Tanzania'));
 print('flag(\'Tanzania, United Republic of\')', flag('Tanzania, United Republic of'));
-print('code(\'🇨🇦\')', code('🇨🇦'));
 print('code(\'Australia\')', code('Australia'));
 print('code(\'UAE\')', code('UAE'));
 print('name(\'AE\')', name('AE'));
-print('name(\'🇶🇦\')', name('🇶🇦'));
 print('code(\'UK\')', code('UK'));
 print('flag(name(flag(code(flag(name(\'NZ\'))))))', flag(name(flag(code(flag(name('NZ')))))), 'all values can be converted back and forth indefinitely');

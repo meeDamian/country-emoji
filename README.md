@@ -34,6 +34,12 @@ const {flag, code, name} = require('country-emoji');
 flag('CL')
  // ~> 🇨🇱
 
+code('🇨🇦')
+ // ~> CA
+
+name('🇶🇦')
+ // ~> Qatar
+
 // can extract name from string…
 flag('Taiwan number one!')
  // ~> 🇹🇼
@@ -48,9 +54,6 @@ flag('Republic of Tanzania')
 flag('Tanzania, United Republic of')
  // ~> 🇹🇿
 
-code('🇨🇦')
- // ~> CA
-
 code('Australia')
  // ~> AU
 
@@ -59,9 +62,6 @@ code('UAE')
 
 name('AE')
  // ~> United Arab Emirates
-
-name('🇶🇦')
- // ~> Qatar
 
 code('UK')
  // ~> GB
