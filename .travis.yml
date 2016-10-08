@@ -3,5 +3,5 @@ node_js:
   - '6'
   - '6.0'
 after_success:
-  - codecov
+  - bash <(curl -s https://codecov.io/bash)
   - "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
