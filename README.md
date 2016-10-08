@@ -31,34 +31,41 @@ $ npm install --save country-emoji
 ```
 const {flag, code, name} = require('country-emoji');
 
-// primary functions:
-flag('CL');
+flag('CL')
 // 🇨🇱
 
-flag('Taiwan nember one!');
+// can extract name from string…
+flag('Taiwan number one!')
 // 🇹🇼
 
-code('🇨🇦');
+// …but only if there's no ambiguity
+flag('Congo and Burma')
+// undefined
+
+flag('Republic of Tanzania')
+// 🇹🇿
+
+flag('Tanzania, United Republic of')
+// 🇹🇿
+
+code('🇨🇦')
 // CA
 
-code('Australia');
+code('Australia')
 // AU
 
-name('AE');
+code('UAE')
+// AE
+
+name('AE')
 // United Arab Emirates
 
-name('🇶🇦');
+name('🇶🇦')
 // Qatar
 
-
-// Helpers, but still exposed
-const {isFlag} = require('country-emoji');
-
-isFlag('🇸🇻');
-// true
-
-isFlag('💩');
-// false
+// all values can be converted back and forth indefinitely
+flag(name(flag(code(flag(name('NZ'))))))
+// 🇳🇿
 
 
 ```

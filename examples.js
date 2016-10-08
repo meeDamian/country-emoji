@@ -1,15 +1,23 @@
 'use strict';
 
-//
-// primary functions:
-//
 const {flag, code, name} = require('./main.js');
 
 console.log(flag('CL'));
 // 🇨🇱
 
-console.log(flag('Taiwan nember one!'));
+// can extract name from string…
+console.log(flag('Taiwan number one!'));
 // 🇹🇼
+
+// …but only if there's no ambiguity
+console.log(flag('Congo and Burma'));
+// undefined
+
+console.log(flag('Republic of Tanzania'));
+// 🇹🇿
+
+console.log(flag('Tanzania, United Republic of'));
+// 🇹🇿
 
 console.log(code('🇨🇦'));
 // CA
@@ -17,19 +25,15 @@ console.log(code('🇨🇦'));
 console.log(code('Australia'));
 // AU
 
+console.log(code('UAE'));
+// AE
+
 console.log(name('AE'));
 // United Arab Emirates
 
 console.log(name('🇶🇦'));
 // Qatar
 
-//
-// Helpers, but still exposed
-//
-const {isFlag} = require('./main.js');
-
-console.log(isFlag('🇸🇻'));
-// true
-
-console.log(isFlag('💩'));
-// false
+// all values can be converted back and forth indefinitely
+console.log(flag(name(flag(code(flag(name('NZ')))))));
+// 🇳🇿
