@@ -4,7 +4,7 @@
   "description": "Converts between country names, ISO 3166-1 codes and flag emojis.",
   "main": "main.js",
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && nyc ava"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/meeDamian/country-emoji#readme",
   "devDependencies": {
     "ava": "^0.16.0",
+    "nyc": "^8.3.1",
     "xo": "^0.16.0"
   },
   "xo": {

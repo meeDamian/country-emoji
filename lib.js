@@ -31,8 +31,14 @@ function fuzzyCompare(str, name) {
   return false;
 }
 
+function isCode(code) {
+  code = code.toUpperCase();
+
+  return countries[code] ? code : undefined;
+}
+
 function nameToCode(name) {
-  if (!NAME_RE.test(name)) {
+  if (!name || !NAME_RE.test(name)) {
     return;
   }
 
@@ -85,7 +91,7 @@ function nameToCode(name) {
 }
 
 function codeToName(code) {
-  if (!CODE_RE.test(code)) {
+  if (!code || !CODE_RE.test(code)) {
     return;
   }
 
@@ -98,21 +104,24 @@ function codeToName(code) {
 }
 
 function codeToFlag(code) {
-  if (!CODE_RE.test(code)) {
+  if (!code || !CODE_RE.test(code)) {
     return;
   }
 
-  code = code.toUpperCase();
+  code = isCode(code);
+  if (!code) {
+    return;
+  }
 
   return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.charCodeAt()));
 }
 
 function flagToCode(flag) {
-  if (!FLAG_RE.test(flag)) {
+  if (!flag || !FLAG_RE.test(flag)) {
     return;
   }
 
-  return [...flag].map(c => c.codePointAt(0) - MAGIC_NUMBER).map(c => String.fromCharCode(c)).join('');
+  return isCode([...flag].map(c => c.codePointAt(0) - MAGIC_NUMBER).map(c => String.fromCharCode(c)).join(''));
 }
 
 // takes either emoji or full name
@@ -122,7 +131,7 @@ function code(input) {
 
 // takes either code or full name
 function flag(input) {
-  if (!CODE_RE.test(input)) {
+  if (!CODE_RE.test(input) || input === 'UK') {
     input = nameToCode(input);
   }
 
@@ -149,6 +158,7 @@ module.exports = {
   flag,
   name,
 
+  isCode,
   fuzzyCompare,
 
   codeToName,
