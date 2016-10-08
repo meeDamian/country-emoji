@@ -41,15 +41,17 @@ function nameToCode(name) {
   // look for exact match
   // NOTE: normal loop to terminate ASAP
   for (const code in countries) {
-    let names = countries[code];
+    if ({}.hasOwnProperty.call(countries, code)) {
+      let names = countries[code];
 
-    if (!Array.isArray(names)) {
-      names = [names];
-    }
+      if (!Array.isArray(names)) {
+        names = [names];
+      }
 
-    for (const n of names) {
-      if (n.toLowerCase() === name) {
-        return code;
+      for (const n of names) {
+        if (n.toLowerCase() === name) {
+          return code;
+        }
       }
     }
   }
@@ -73,11 +75,11 @@ function nameToCode(name) {
       return false;
     });
 
-    // return only when exactly one match was found
-    //   prevents cases like "United"
-    if (matches.length === 1) {
-      return matches[0];
-    }
+  // return only when exactly one match was found
+  //   prevents cases like "United"
+  if (matches.length === 1) {
+    return matches[0];
+  }
 
   return;
 }
