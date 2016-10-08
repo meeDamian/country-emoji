@@ -1,39 +1,24 @@
 'use strict';
 
+function print(str, out, comment = '') {
+  if (comment) {
+    comment = `// ${comment}\n`;
+  }
+
+  console.log(`${comment}${str}\n // ~> ${out}\n`);
+}
+
 const {flag, code, name} = require('./main.js');
 
-console.log(flag('CL'));
-// 🇨🇱
-
-// can extract name from string…
-console.log(flag('Taiwan number one!'));
-// 🇹🇼
-
-// …but only if there's no ambiguity
-console.log(flag('Congo and Burma'));
-// undefined
-
-console.log(flag('Republic of Tanzania'));
-// 🇹🇿
-
-console.log(flag('Tanzania, United Republic of'));
-// 🇹🇿
-
-console.log(code('🇨🇦'));
-// CA
-
-console.log(code('Australia'));
-// AU
-
-console.log(code('UAE'));
-// AE
-
-console.log(name('AE'));
-// United Arab Emirates
-
-console.log(name('🇶🇦'));
-// Qatar
-
-// all values can be converted back and forth indefinitely
-console.log(flag(name(flag(code(flag(name('NZ')))))));
-// 🇳🇿
+print('flag(\'CL\')', flag('CL'));
+print('flag(\'Taiwan number one!\')', flag('Taiwan number one!'), 'can extract name from string…');
+print('flag(\'Congo and Burma\')', flag('Congo and Burma'), '…but only if there\'s no ambiguity');
+print('flag(\'Republic of Tanzania\')', flag('Republic of Tanzania'));
+print('flag(\'Tanzania, United Republic of\')', flag('Tanzania, United Republic of'));
+print('code(\'🇨🇦\')', code('🇨🇦'));
+print('code(\'Australia\')', code('Australia'));
+print('code(\'UAE\')', code('UAE'));
+print('name(\'AE\')', name('AE'));
+print('name(\'🇶🇦\')', name('🇶🇦'));
+print('code(\'UK\')', code('UK'));
+print('flag(name(flag(code(flag(name(\'NZ\'))))))', flag(name(flag(code(flag(name('NZ')))))), 'all values can be converted back and forth indefinitely');
