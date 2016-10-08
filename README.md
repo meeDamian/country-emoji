@@ -28,7 +28,7 @@ $ npm install --save country-emoji
 
 ## Usage
 
-```
+```js
 const {flag, code, name} = require('country-emoji');
 
 flag('CL')
