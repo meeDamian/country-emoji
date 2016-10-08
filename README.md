@@ -18,7 +18,7 @@
 [dev_dep_svg]: https://david-dm.org/meeDamian/country-emoji/dev-status.svg
 [dev_dep_url]: https://david-dm.org/meeDamian/country-emoji#info=devDependencies
 
-Converts between country names, ISO 3166-1 codes and flag emojis. **Has zero dependencies.** WIP.
+Converts between country names, ISO 3166-1 codes and flag emojis. **Has zero dependencies.**
 
 ## Install
 
