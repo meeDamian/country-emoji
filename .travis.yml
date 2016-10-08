@@ -4,4 +4,4 @@ node_js:
   - '6.0'
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+  - "cat coverage.lcov | ./node_modules/.bin/coveralls"
