@@ -3,8 +3,8 @@
 
 [travis_svg]: https://travis-ci.org/meeDamian/country-emoji.svg?branch=master
 [travis_url]: https://travis-ci.org/meeDamian/country-emoji
-[codeship_svg]: https://codeship.com/projects/4651ffa0-ae14-0133-e229-0eeab60c84ba/status?branch=master
-[codeship_url]: https://codeship.com/projects/132211
+[codeship_svg]: https://app.codeship.com/projects/4c475430-6f94-0134-4dcc-3acc74581569/status?branch=master
+[codeship_url]: https://app.codeship.com/projects/178069
 [coveralls_svg]: https://coveralls.io/repos/github/meeDamian/country-emoji/badge.svg?branch=master
 [coveralls_url]: https://coveralls.io/github/meeDamian/country-emoji?branch=master
 [codecov_svg]: https://codecov.io/github/meeDamian/country-emoji/coverage.svg?branch=master
