@@ -6,6 +6,7 @@ test('[main.js].code() is exported properly', t => {
   if (!fn || typeof fn !== 'function') {
     t.fail();
   }
+  t.pass();
 });
 
 test('[lib.js].code() is exported properly', t => {
@@ -14,6 +15,7 @@ test('[lib.js].code() is exported properly', t => {
   if (!fn || typeof fn !== 'function') {
     t.fail();
   }
+  t.pass();
 });
 
 const {code} = require('../lib.js');
@@ -23,6 +25,7 @@ test('fails if empty', t => {
   if (iso3166 !== undefined) {
     t.fail(`${iso3166} instead of undefined`);
   }
+  t.pass();
 });
 
 //
@@ -33,6 +36,7 @@ test('converts name', t => {
   if (!iso3166 || iso3166 !== 'BE') {
     t.fail(`${iso3166} instead of BE`);
   }
+  t.pass();
 });
 
 test('converts short name', t => {
@@ -40,6 +44,7 @@ test('converts short name', t => {
   if (!iso3166 || iso3166 !== 'GB') {
     t.fail(`${iso3166} instead of GB`);
   }
+  t.pass();
 });
 
 test('converts partial name', t => {
@@ -47,6 +52,7 @@ test('converts partial name', t => {
   if (!iso3166 || iso3166 !== 'BN') {
     t.fail(`${iso3166} instead of BN`);
   }
+  t.pass();
 });
 
 test('converts alternative name', t => {
@@ -54,6 +60,7 @@ test('converts alternative name', t => {
   if (!iso3166 || iso3166 !== 'KR') {
     t.fail(`${iso3166} instead of KR`);
   }
+  t.pass();
 });
 
 test('converts weird name notation', t => {
@@ -61,6 +68,7 @@ test('converts weird name notation', t => {
   if (!iso3166 || iso3166 !== 'IR') {
     t.fail(`${iso3166} instead of IR`);
   }
+  t.pass();
 });
 
 test('converts less weird name notation', t => {
@@ -68,6 +76,7 @@ test('converts less weird name notation', t => {
   if (!iso3166 || iso3166 !== 'MK') {
     t.fail(`${iso3166} instead of MK`);
   }
+  t.pass();
 });
 
 test('converts name with weird characters', t => {
@@ -75,6 +84,7 @@ test('converts name with weird characters', t => {
   if (!iso3166 || iso3166 !== 'AX') {
     t.fail(`${iso3166} instead of AX`);
   }
+  t.pass();
 });
 
 test('converts name with different casing', t => {
@@ -82,6 +92,7 @@ test('converts name with different casing', t => {
   if (!iso3166 || iso3166 !== 'BY') {
     t.fail(`${iso3166} instead of BY`);
   }
+  t.pass();
 });
 
 test('converts if name within string', t => {
@@ -89,6 +100,7 @@ test('converts if name within string', t => {
   if (!iso3166 || iso3166 !== 'CA') {
     t.fail(`${iso3166} instead of CA`);
   }
+  t.pass();
 });
 
 test('fails on name conflict', t => {
@@ -96,6 +108,7 @@ test('fails on name conflict', t => {
   if (iso3166 !== undefined) {
     t.fail(`${iso3166} instead of undefined`);
   }
+  t.pass();
 });
 
 test('fails if two names in string', t => {
@@ -103,6 +116,7 @@ test('fails if two names in string', t => {
   if (iso3166 !== undefined) {
     t.fail(`${iso3166} instead of undefined`);
   }
+  t.pass();
 });
 
 test('fails on no match', t => {
@@ -110,6 +124,7 @@ test('fails on no match', t => {
   if (iso3166 !== undefined) {
     t.fail(`${iso3166} instead of undefined`);
   }
+  t.pass();
 });
 
 //
@@ -120,6 +135,7 @@ test('fails if code given', t => {
   if (iso3166 !== undefined) {
     t.fail(`${iso3166} instead of undefined`);
   }
+  t.pass();
 });
 
 //
@@ -130,6 +146,7 @@ test('converts if valid flag given', t => {
   if (iso3166 !== 'MO') {
     t.fail(`${iso3166} instead of MO`);
   }
+  t.pass();
 });
 
 test('fails if invalid flag given', t => {
@@ -137,6 +154,7 @@ test('fails if invalid flag given', t => {
   if (iso3166 !== undefined) {
     t.fail(`${iso3166} instead of undefined`);
   }
+  t.pass();
 });
 
 test('fails if some other emoji given', t => {
@@ -144,4 +162,5 @@ test('fails if some other emoji given', t => {
   if (iso3166 !== undefined) {
     t.fail(`${iso3166} instead of undefined`);
   }
+  t.pass();
 });

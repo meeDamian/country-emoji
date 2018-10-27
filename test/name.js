@@ -6,6 +6,7 @@ test('[main.js].name() is exported properly', t => {
   if (!fn || typeof fn !== 'function') {
     t.fail();
   }
+  t.pass();
 });
 
 test('[lib.js].name() is exported properly', t => {
@@ -14,6 +15,7 @@ test('[lib.js].name() is exported properly', t => {
   if (!fn || typeof fn !== 'function') {
     t.fail();
   }
+  t.pass();
 });
 
 const {name} = require('../lib.js');
@@ -23,6 +25,7 @@ test('fails if empty', t => {
   if (country !== undefined) {
     t.fail(`${country} instead of undefined`);
   }
+  t.pass();
 });
 
 //
@@ -33,6 +36,7 @@ test('fails if country name given', t => {
   if (country !== undefined) {
     t.fail(`${country} instead of undefined`);
   }
+  t.pass();
 });
 
 test('fails if short country name given', t => {
@@ -40,6 +44,7 @@ test('fails if short country name given', t => {
   if (country !== undefined) {
     t.fail(`${country} instead of undefined`);
   }
+  t.pass();
 });
 
 //
@@ -50,6 +55,7 @@ test('converts if valid code given', t => {
   if (country !== 'Libyan Arab Jamahiriya') {
     t.fail(`${country} instead of Libyan Arab Jamahiriya`);
   }
+  t.pass();
 });
 
 test('returns first name from array', t => {
@@ -57,6 +63,7 @@ test('returns first name from array', t => {
   if (country !== 'United States') {
     t.fail(`${country} instead of United States`);
   }
+  t.pass();
 });
 
 test('fails if invalid code given', t => {
@@ -64,6 +71,7 @@ test('fails if invalid code given', t => {
   if (country !== undefined) {
     t.fail(`${country} instead of undefined`);
   }
+  t.pass();
 });
 
 test('fails if other chars given', t => {
@@ -71,6 +79,7 @@ test('fails if other chars given', t => {
   if (country !== undefined) {
     t.fail(`${country} instead of undefined`);
   }
+  t.pass();
 });
 
 //
@@ -81,6 +90,7 @@ test('converts if valid flag given', t => {
   if (country !== 'United Kingdom') {
     t.fail(`${country} instead of United Kingdom`);
   }
+  t.pass();
 });
 
 test('fails if invalid flag given', t => {
@@ -88,6 +98,7 @@ test('fails if invalid flag given', t => {
   if (country !== undefined) {
     t.fail(`${country} instead of undefined`);
   }
+  t.pass();
 });
 
 test('fails if some other emoji given', t => {
@@ -95,4 +106,5 @@ test('fails if some other emoji given', t => {
   if (country !== undefined) {
     t.fail(`${country} instead of undefined`);
   }
+  t.pass();
 });
