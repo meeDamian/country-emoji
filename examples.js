@@ -8,7 +8,7 @@ function print(str, out, comment = '') {
   console.log(`${comment}${str}\n // ~> ${out}\n`);
 }
 
-const {flag, code, name} = require('./main.js');
+const {flag, code, name, countries} = require('./main.js');
 
 print('flag(\'CL\')', flag('CL'));
 print('code(\'🇨🇦\')', code('🇨🇦'));
@@ -22,3 +22,4 @@ print('code(\'UAE\')', code('UAE'));
 print('name(\'AE\')', name('AE'));
 print('code(\'UK\')', code('UK'));
 print('flag(name(flag(code(flag(name(\'NZ\'))))))', flag(name(flag(code(flag(name('NZ')))))), 'all values can be converted back and forth indefinitely');
+print('Object.keys(countries).join(\', \')', Object.keys(countries).join(', '), 'a dictionary (of country code to country name) of all countries');

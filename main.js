@@ -1,5 +1,5 @@
 'use strict';
 
-const {flag, name, code} = require('./lib.js');
+const {flag, name, code, countries} = require('./lib.js');
 
-module.exports = {flag, name, code};
+module.exports = {flag, name, code, countries};
