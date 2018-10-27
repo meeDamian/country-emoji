@@ -24,10 +24,10 @@
   },
   "homepage": "https://github.com/meeDamian/country-emoji#readme",
   "devDependencies": {
-    "ava": "^0.16.0",
-    "coveralls": "^2.11.14",
-    "nyc": "^8.3.1",
-    "xo": "^0.16.0"
+    "ava": "^0.25.0",
+    "coveralls": "^3.0.2",
+    "nyc": "^13.1.0",
+    "xo": "^0.23.0"
   },
   "xo": {
     "esnext": true,

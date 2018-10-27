@@ -11,14 +11,14 @@ const FLAG_RE = /\uD83C[\uDDE6-\uDDFF]/;
 function fuzzyCompare(str, name) {
   name = name.toLowerCase();
 
-  // cases like:
+  // Cases like:
   //    "Vatican" <-> "Holy See (Vatican City State)"
   //    "Russia"  <-> "Russian Federation"
   if (name.indexOf(str) !== -1 || str.indexOf(name) !== -1) {
     return true;
   }
 
-  // cases like:
+  // Cases like:
   // "British Virgin Islands" <-> "Virgin Islands, British"
   // "Republic of Moldova"    <-> "Moldova, Republic of"
   if (name.indexOf(',') !== -1) {
@@ -44,7 +44,7 @@ function nameToCode(name) {
 
   name = name.trim().toLowerCase();
 
-  // look for exact match
+  // Look for exact match
   // NOTE: normal loop to terminate ASAP
   for (const code in countries) {
     if ({}.hasOwnProperty.call(countries, code)) {
@@ -62,7 +62,7 @@ function nameToCode(name) {
     }
   }
 
-  // look for inexact match
+  // Look for inexact match
   // NOTE: .filter() to aggregate all matches
   const matches = Object.keys(countries)
     .filter(code => {
@@ -81,13 +81,11 @@ function nameToCode(name) {
       return false;
     });
 
-  // return only when exactly one match was found
+  // Return only when exactly one match was found
   //   prevents cases like "United"
   if (matches.length === 1) {
     return matches[0];
   }
-
-  return;
 }
 
 function codeToName(code) {
@@ -116,7 +114,6 @@ function codeToFlag(code) {
   if (String && String.fromCodePoint) {
     return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.charCodeAt()));
   }
-  return;
 }
 
 function flagToCode(flag) {
@@ -127,12 +124,12 @@ function flagToCode(flag) {
   return isCode([...flag].map(c => c.codePointAt(0) - MAGIC_NUMBER).map(c => String.fromCharCode(c)).join(''));
 }
 
-// takes either emoji or full name
+// Takes either emoji or full name
 function code(input) {
   return flagToCode(input) || nameToCode(input);
 }
 
-// takes either code or full name
+// Takes either code or full name
 function flag(input) {
   if (!CODE_RE.test(input) || input === 'UK') {
     input = nameToCode(input);
@@ -141,7 +138,7 @@ function flag(input) {
   return codeToFlag(input);
 }
 
-// takes either emoji or code
+// Takes either emoji or code
 function name(input) {
   if (FLAG_RE.test(input)) {
     input = flagToCode(input);
