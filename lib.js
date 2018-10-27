@@ -158,6 +158,8 @@ module.exports = {
   flag,
   name,
 
+  countries,
+
   isCode,
   fuzzyCompare,
 
