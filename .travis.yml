@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - '6'
-  - '6.0'
+  - '8'
+  - '11'
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - "cat coverage.lcov | coveralls"
