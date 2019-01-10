@@ -2,9 +2,11 @@
   "name": "country-emoji",
   "version": "1.2.0",
   "description": "Converts between country names, ISO 3166-1 codes and flag emojis.",
-  "main": "main.js",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "xo && nyc ava && nyc report --reporter=text-lcov > coverage.lcov"
+    "test": "xo && nyc ava && nyc report --reporter=text-lcov > coverage.lcov",
+    "build": "babel src -d dist",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,8 @@
   "homepage": "https://github.com/meeDamian/country-emoji#readme",
   "devDependencies": {
     "ava": "^0.25.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "coveralls": "^3.0.2",
     "nyc": "^13.1.0",
     "xo": "^0.23.0"

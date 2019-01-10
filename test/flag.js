@@ -1,7 +1,7 @@
 import test from 'ava';
 
 test('[main.js].flag() is exported properly', t => {
-  const fn = require('../main.js').flag;
+  const fn = require('../src/main.js').flag;
 
   if (!fn || typeof fn !== 'function') {
     t.fail();
@@ -10,7 +10,7 @@ test('[main.js].flag() is exported properly', t => {
 });
 
 test('[lib.js].flag() is exported properly', t => {
-  const fn = require('../lib.js').flag;
+  const fn = require('../src/lib.js').flag;
 
   if (!fn || typeof fn !== 'function') {
     t.fail();
@@ -18,7 +18,7 @@ test('[lib.js].flag() is exported properly', t => {
   t.pass();
 });
 
-const {flag} = require('../lib.js');
+const {flag} = require('../src/lib.js');
 
 test('fails if empty', t => {
   const emoji = flag();

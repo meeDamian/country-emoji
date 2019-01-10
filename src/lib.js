@@ -1,6 +1,6 @@
 'use strict';
 
-const countries = require('./countries.json');
+const countries = require('../countries.json');
 
 const MAGIC_NUMBER = 127462 - 65;
 

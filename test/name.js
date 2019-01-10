@@ -1,7 +1,7 @@
 import test from 'ava';
 
 test('[main.js].name() is exported properly', t => {
-  const fn = require('../main.js').name;
+  const fn = require('../src/main.js').name;
 
   if (!fn || typeof fn !== 'function') {
     t.fail();
@@ -10,7 +10,7 @@ test('[main.js].name() is exported properly', t => {
 });
 
 test('[lib.js].name() is exported properly', t => {
-  const fn = require('../lib.js').name;
+  const fn = require('../src/lib.js').name;
 
   if (!fn || typeof fn !== 'function') {
     t.fail();
@@ -18,7 +18,7 @@ test('[lib.js].name() is exported properly', t => {
   t.pass();
 });
 
-const {name} = require('../lib.js');
+const {name} = require('../src/lib.js');
 
 test('fails if empty', t => {
   const country = name();
