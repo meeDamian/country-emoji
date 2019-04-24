@@ -26,12 +26,13 @@
   },
   "homepage": "https://github.com/meeDamian/country-emoji#readme",
   "devDependencies": {
-    "ava": "^0.25.0",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "coveralls": "^3.0.2",
-    "nyc": "^13.1.0",
-    "xo": "^0.23.0"
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "ava": "^1.4.1",
+    "coveralls": "^3.0.3",
+    "nyc": "^14.0.0",
+    "xo": "^0.24.0"
   },
   "xo": {
     "esnext": true,
