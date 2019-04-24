@@ -6,6 +6,7 @@ test('[main.js].flag() is exported properly', t => {
   if (!fn || typeof fn !== 'function') {
     t.fail();
   }
+
   t.pass();
 });
 
@@ -15,6 +16,7 @@ test('[lib.js].flag() is exported properly', t => {
   if (!fn || typeof fn !== 'function') {
     t.fail();
   }
+
   t.pass();
 });
 
@@ -25,6 +27,7 @@ test('fails if empty', t => {
   if (emoji !== undefined) {
     t.fail(`${emoji} instead of undefined`);
   }
+
   t.pass();
 });
 
@@ -36,6 +39,7 @@ test('converts name', t => {
   if (!emoji || emoji !== '🇹🇼') {
     t.fail(`${emoji} instead of 🇹🇼`);
   }
+
   t.pass();
 });
 
@@ -44,6 +48,7 @@ test('converts short name', t => {
   if (!emoji || emoji !== '🇬🇧') {
     t.fail(`${emoji} instead of 🇬🇧`);
   }
+
   t.pass();
 });
 
@@ -52,6 +57,7 @@ test('converts partial name', t => {
   if (!emoji || emoji !== '🇨🇿') {
     t.fail(`${emoji} instead of 🇨🇿`);
   }
+
   t.pass();
 });
 
@@ -60,6 +66,7 @@ test('converts alternative name', t => {
   if (!emoji || emoji !== '🇰🇵') {
     t.fail(`${emoji} instead of 🇰🇵`);
   }
+
   t.pass();
 });
 
@@ -68,6 +75,7 @@ test('converts weird name notation', t => {
   if (!emoji || emoji !== '🇻🇬') {
     t.fail(`${emoji} instead of 🇻🇬`);
   }
+
   t.pass();
 });
 
@@ -76,6 +84,7 @@ test('converts less weird name notation', t => {
   if (!emoji || emoji !== '🇻🇮') {
     t.fail(`${emoji} instead of 🇻🇮`);
   }
+
   t.pass();
 });
 
@@ -84,6 +93,7 @@ test('converts name with weird characters', t => {
   if (!emoji || emoji !== '🇦🇽') {
     t.fail(`${emoji} instead of 🇦🇽`);
   }
+
   t.pass();
 });
 
@@ -92,6 +102,7 @@ test('converts name with different casing', t => {
   if (!emoji || emoji !== '🇪🇬') {
     t.fail(`${emoji} instead of 🇪🇬`);
   }
+
   t.pass();
 });
 
@@ -100,6 +111,7 @@ test('converts if name within string', t => {
   if (!emoji || emoji !== '🇨🇳') {
     t.fail(`${emoji} instead of 🇨🇳`);
   }
+
   t.pass();
 });
 
@@ -108,6 +120,7 @@ test('fails on name conflict', t => {
   if (emoji !== undefined) {
     t.fail(`${emoji} instead of undefined`);
   }
+
   t.pass();
 });
 
@@ -116,6 +129,7 @@ test('fails if two names in string', t => {
   if (emoji !== undefined) {
     t.fail(`${emoji} instead of undefined`);
   }
+
   t.pass();
 });
 
@@ -124,6 +138,7 @@ test('fails on no match', t => {
   if (emoji !== undefined) {
     t.fail(`${emoji} instead of undefined`);
   }
+
   t.pass();
 });
 
@@ -135,6 +150,7 @@ test('converts if existing code given', t => {
   if (!emoji || emoji !== '🇲🇦') {
     t.fail(`${emoji} instead of 🇲🇦`);
   }
+
   t.pass();
 });
 
@@ -143,6 +159,7 @@ test('fails if not existing code given', t => {
   if (emoji) {
     t.fail(`${emoji} instead of undefined`);
   }
+
   t.pass();
 });
 
@@ -154,5 +171,6 @@ test('fails if emoji given', t => {
   if (emoji !== undefined) {
     t.fail(`${emoji} instead of undefined`);
   }
+
   t.pass();
 });
