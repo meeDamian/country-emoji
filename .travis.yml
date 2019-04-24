@@ -10,7 +10,6 @@ after_success:
 - cat coverage.lcov | coveralls
 
 deploy:
-  tag: beta
   skip_cleanup: true
   provider: npm
   email: hello@meedamian.com
