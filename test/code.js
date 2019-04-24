@@ -1,7 +1,7 @@
 import test from 'ava';
 
 test('[main.js].code() is exported properly', t => {
-  const fn = require('../main.js').code;
+  const fn = require('../src/main.js').code;
 
   if (!fn || typeof fn !== 'function') {
     t.fail();
@@ -10,7 +10,7 @@ test('[main.js].code() is exported properly', t => {
 });
 
 test('[lib.js].code() is exported properly', t => {
-  const fn = require('../lib.js').code;
+  const fn = require('../src/lib.js').code;
 
   if (!fn || typeof fn !== 'function') {
     t.fail();
@@ -18,7 +18,7 @@ test('[lib.js].code() is exported properly', t => {
   t.pass();
 });
 
-const {code} = require('../lib.js');
+const {code} = require('../src/lib.js');
 
 test('fails if empty', t => {
   const iso3166 = code();

@@ -14,7 +14,7 @@ const {
   codeToFlag,
   nameToCode,
   flagToCode
-} = require('../lib.js');
+} = require('../src/lib.js');
 
 test('MAGIC_NUMBER is exported properly', t => {
   if (!MAGIC_NUMBER || typeof MAGIC_NUMBER !== 'number') {

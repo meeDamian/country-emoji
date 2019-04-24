@@ -8,7 +8,7 @@ function print(str, out, comment = '') {
   console.log(`${comment}${str}\n // ~> ${out}\n`);
 }
 
-const {flag, code, name, countries} = require('./main.js');
+const {flag, code, name, countries} = require('./src/main.js');
 
 print('flag(\'CL\')', flag('CL'));
 print('code(\'🇨🇦\')', code('🇨🇦'));
