@@ -29,7 +29,7 @@ $ npm install --save country-emoji
 ## Usage
 
 ```js
-const {flag, code, name} = require('country-emoji');
+const {flag, code, name, countries} = require('country-emoji');
 
 flag('CL')
  // ~> 🇨🇱
@@ -78,7 +78,7 @@ Object.keys(countries).join(", ")
 
 ## Bugs and feedback
 
-If you discover a bug please report it [here](https://github.com/meeDamian/country-emoji/issues/new).
+If you discover a bug please report it [here](https://github.com/meeDamian/country-emoji/issues/new).  Express gratitude [here](https://donate.meedamian.com). 
 
 Mail me at bugs@meedamian.com, or on twitter [@meeDamian](http://twitter.com/meedamian).
 
