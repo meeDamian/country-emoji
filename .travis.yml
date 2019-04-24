@@ -1,7 +1,20 @@
 language: node_js
 node_js:
-  - '8'
-  - '11'
+- '11'
+- '8'
+
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
-  - "cat coverage.lcov | coveralls"
+- bash <(curl -s https://codecov.io/bash)
+- cat coverage.lcov | coveralls
+
+deploy:
+  tag: beta
+  skip_cleanup: true
+  provider: npm
+  email: hello@meedamian.com
+  api_key:
+    secure: GdEycJYUR/IlKcXZY19cBYOy477CMKP50dpMtiA1da/qdiLGtpwnWizr3vD+oRtXsKXgmBF7rOitmiCuAGmRZrB5jeopzUuY+M6LSWILy51XUCxRhPxoVDLZtYhYbHtQBtv+X5J1tt6oapar/bUnmvxkhUGyt0fNe8BhVsaSq/oTXi1+muUR4EwCpgLc75HTsVUTDqgKtyiG/W77vb26LWmWYLMlr1/Cszd1MOhQKK3DneXq8na9GCeEeuUCzH7DjTH5isR7rNe3QL6K2yjXWLKjK+K0sj7WzXLZkhJP2KeSJISagKZ1CfmGXQaCHud8EXUHHKu0pR702Trsp0q++uT+meAK8WHfxru5NjKMq3ZmzVuUiWwySOBdUXyxldVZ+KTl7KeKvrFAyTTaG4BjLOwF9KWXlHA+pihl1wWMvMfNf6r+mjK6Gza/U7DJ0Y6EM6rWy9A28E1ABCjJs0RsO+glj184ggY/YEpRBOQNiYvDlUZqrUTuvLm8h3S1Raw9KGZUejrf0HYM2WXNC7cbeUmoYNc+/JSZ3rrAeRL8tgB4uD0dy3B3ihkxFUpWRwI0qPJ3+Duxq82eOAfgjLEf+Ohwpy5+yFvltX3bAtUoZFcrDDUN0jl50qqh3hf8z7trtAyiqlvRnXtDfWM+DDI6Ko6pNnS430vn/HHIeZKnOFo=
+  on:
+    tags: true
+    repo: meeDamian/country-emoji
+    node: '11'

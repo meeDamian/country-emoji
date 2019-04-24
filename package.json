@@ -3,6 +3,10 @@
   "version": "1.2.0",
   "description": "Converts between country names, ISO 3166-1 codes and flag emojis.",
   "main": "dist/main.js",
+  "files": [
+    "dist/main.js",
+    "dist/lib.js"
+  ],
   "scripts": {
     "test": "xo && nyc ava && nyc report --reporter=text-lcov > coverage.lcov",
     "build": "babel src -d dist",
