@@ -11,7 +11,7 @@
   "scripts": {
     "test": "xo && nyc ava && nyc report --reporter=text-lcov > coverage.lcov",
     "build": "babel src -d dist",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
