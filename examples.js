@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict';
 
 function print(str, out, comment = '') {
