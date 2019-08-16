@@ -52,7 +52,7 @@
   "CV": "Cape Verde",
   "CX": "Christmas Island",
   "CY": "Cyprus",
-  "CZ": "Czech Republic",
+  "CZ": ["Czechia", "Czech Republic"],
   "DE": "Germany",
   "DJ": "Djibouti",
   "DK": "Denmark",
