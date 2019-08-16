@@ -5,6 +5,10 @@ node_js:
   - '10'
   - '9'
 
+stages:
+  - name: deploy
+    if: tag IS present
+
 jobs:
   include:
     stage: deploy
@@ -21,5 +25,5 @@ jobs:
 
 
 after_success:
-- bash <(curl -s https://codecov.io/bash)
-- cat coverage.lcov | coveralls
+  - bash <(curl -s https://codecov.io/bash)
+  - cat coverage.lcov | coveralls
