@@ -6,6 +6,7 @@ node_js:
   - '9'
 
 stages:
+  - test
   - name: deploy
     if: tag IS present
 
