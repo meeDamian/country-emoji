@@ -1,18 +1,30 @@
 # country-emoji
-[![Build Status][travis_svg]][travis_url] [![Codeship Status for meeDamian/country-emoji][codeship_svg]][codeship_url] [![Coverage Status][coveralls_svg]][coveralls_url] [![codecov.io][codecov_svg]][codecov_url] [![npm version][npm_svg]][npm_url] [![XO code style][xo_svg]][xo_url]
+
+[![npm version][npm_svg]][npm_url]
+[![Build Status][travis_svg]][travis_url]
+[![Codeship Status for meeDamian/country-emoji][codeship_svg]][codeship_url]
+[![Coverage Status][coveralls_svg]][coveralls_url]
+[![codecov.io][codecov_svg]][codecov_url]
+[![XO code style][xo_svg]][xo_url]
+
+[npm_svg]: https://img.shields.io/npm/v/country-emoji
+[npm_url]: https://www.npmjs.com/package/country-emoji
 
 [travis_svg]: https://travis-ci.org/meeDamian/country-emoji.svg?branch=master
 [travis_url]: https://travis-ci.org/meeDamian/country-emoji
+
 [codeship_svg]: https://app.codeship.com/projects/4c475430-6f94-0134-4dcc-3acc74581569/status?branch=master
 [codeship_url]: https://app.codeship.com/projects/178069
+
 [coveralls_svg]: https://coveralls.io/repos/github/meeDamian/country-emoji/badge.svg?branch=master
 [coveralls_url]: https://coveralls.io/github/meeDamian/country-emoji?branch=master
+
 [codecov_svg]: https://codecov.io/github/meeDamian/country-emoji/coverage.svg?branch=master
 [codecov_url]: https://codecov.io/github/meeDamian/country-emoji?branch=master
-[npm_svg]: https://badge.fury.io/js/country-emoji.svg
-[npm_url]: https://badge.fury.io/js/country-emoji
+
 [xo_svg]: https://img.shields.io/badge/code_style-XO-5ed9c7.svg
 [xo_url]: https://github.com/sindresorhus/xo
+
 
 
 Converts between country names, ISO 3166-1 codes and flag emojis. **Has zero dependencies.**
