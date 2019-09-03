@@ -1,11 +1,15 @@
 # country-emoji
 
-[![npm version][npm_svg]][npm_url]
-[![Build Status][travis_svg]][travis_url]
-[![Codeship Status for meeDamian/country-emoji][codeship_svg]][codeship_url]
-[![Coverage Status][coveralls_svg]][coveralls_url]
-[![codecov.io][codecov_svg]][codecov_url]
-[![XO code style][xo_svg]][xo_url]
+[![npm_svg]][npm_url]
+[![travis_svg]][travis_url]
+[![codeship_svg]][codeship_url]
+[![coveralls_svg]][coveralls_url]
+[![codecov_svg]][codecov_url]
+[![dl_url]][npm_url]
+[![xo_svg]][xo_url]
+[![license_svg]][license_url]
+[![tippin_svg]][tippin_url]
+
 
 [npm_svg]: https://img.shields.io/npm/v/country-emoji
 [npm_url]: https://www.npmjs.com/package/country-emoji
@@ -22,10 +26,16 @@
 [codecov_svg]: https://codecov.io/github/meeDamian/country-emoji/coverage.svg?branch=master
 [codecov_url]: https://codecov.io/github/meeDamian/country-emoji?branch=master
 
+[dl_url]: https://img.shields.io/npm/dw/country-emoji
+
 [xo_svg]: https://img.shields.io/badge/code_style-XO-5ed9c7.svg
 [xo_url]: https://github.com/sindresorhus/xo
 
+[license_svg]: https://img.shields.io/npm/l/country-emoji
+[license_url]: https://github.com/meeDamian/country-emoji/blob/master/LICENSE
 
+[tippin_svg]: https://img.shields.io/badge/donate-lightning-FDD023?logo=bitcoin&style=flat
+[tippin_url]: https://tippin.me/@meeDamian
 
 Converts between country names, ISO 3166-1 codes and flag emojis. **Has zero dependencies.**
 
