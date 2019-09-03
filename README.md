@@ -1,5 +1,5 @@
 # country-emoji
-[![Build Status][travis_svg]][travis_url] [![Codeship Status for meeDamian/country-emoji][codeship_svg]][codeship_url] [![Coverage Status][coveralls_svg]][coveralls_url] [![codecov.io][codecov_svg]][codecov_url] [![npm version][npm_svg]][npm_url] [![XO code style][xo_svg]][xo_url] [![Dependency Status][dep_svg]][dep_url] [![devDependency Status][dev_dep_svg]][dev_dep_url]
+[![Build Status][travis_svg]][travis_url] [![Codeship Status for meeDamian/country-emoji][codeship_svg]][codeship_url] [![Coverage Status][coveralls_svg]][coveralls_url] [![codecov.io][codecov_svg]][codecov_url] [![npm version][npm_svg]][npm_url] [![XO code style][xo_svg]][xo_url]
 
 [travis_svg]: https://travis-ci.org/meeDamian/country-emoji.svg?branch=master
 [travis_url]: https://travis-ci.org/meeDamian/country-emoji
@@ -13,10 +13,7 @@
 [npm_url]: https://badge.fury.io/js/country-emoji
 [xo_svg]: https://img.shields.io/badge/code_style-XO-5ed9c7.svg
 [xo_url]: https://github.com/sindresorhus/xo
-[dep_svg]: https://david-dm.org/meeDamian/country-emoji.svg
-[dep_url]: https://david-dm.org/meeDamian/country-emoji
-[dev_dep_svg]: https://david-dm.org/meeDamian/country-emoji/dev-status.svg
-[dev_dep_url]: https://david-dm.org/meeDamian/country-emoji#info=devDependencies
+
 
 Converts between country names, ISO 3166-1 codes and flag emojis. **Has zero dependencies.**
 
@@ -78,7 +75,7 @@ Object.keys(countries).join(", ")
 
 ## Bugs and feedback
 
-If you discover a bug please report it [here](https://github.com/meeDamian/country-emoji/issues/new).  Express gratitude [here](https://donate.meedamian.com). 
+If you discover a bug please report it [here](https://github.com/meeDamian/country-emoji/issues/new).  Express gratitude [here](https://donate.meedamian.com).
 
 Mail me at bugs@meedamian.com, or on twitter [@meeDamian](http://twitter.com/meedamian).
 
