@@ -1,22 +1,41 @@
 # country-emoji
-[![Build Status][travis_svg]][travis_url] [![Codeship Status for meeDamian/country-emoji][codeship_svg]][codeship_url] [![Coverage Status][coveralls_svg]][coveralls_url] [![codecov.io][codecov_svg]][codecov_url] [![npm version][npm_svg]][npm_url] [![XO code style][xo_svg]][xo_url] [![Dependency Status][dep_svg]][dep_url] [![devDependency Status][dev_dep_svg]][dev_dep_url]
+
+[![npm_svg]][npm_url]
+[![travis_svg]][travis_url]
+[![codeship_svg]][codeship_url]
+[![coveralls_svg]][coveralls_url]
+[![codecov_svg]][codecov_url]
+[![dl_url]][npm_url]
+[![xo_svg]][xo_url]
+[![license_svg]][license_url]
+[![tippin_svg]][tippin_url]
+
+
+[npm_svg]: https://img.shields.io/npm/v/country-emoji
+[npm_url]: https://www.npmjs.com/package/country-emoji
 
 [travis_svg]: https://travis-ci.org/meeDamian/country-emoji.svg?branch=master
 [travis_url]: https://travis-ci.org/meeDamian/country-emoji
+
 [codeship_svg]: https://app.codeship.com/projects/4c475430-6f94-0134-4dcc-3acc74581569/status?branch=master
 [codeship_url]: https://app.codeship.com/projects/178069
+
 [coveralls_svg]: https://coveralls.io/repos/github/meeDamian/country-emoji/badge.svg?branch=master
 [coveralls_url]: https://coveralls.io/github/meeDamian/country-emoji?branch=master
+
 [codecov_svg]: https://codecov.io/github/meeDamian/country-emoji/coverage.svg?branch=master
 [codecov_url]: https://codecov.io/github/meeDamian/country-emoji?branch=master
-[npm_svg]: https://badge.fury.io/js/country-emoji.svg
-[npm_url]: https://badge.fury.io/js/country-emoji
+
+[dl_url]: https://img.shields.io/npm/dw/country-emoji
+
 [xo_svg]: https://img.shields.io/badge/code_style-XO-5ed9c7.svg
 [xo_url]: https://github.com/sindresorhus/xo
-[dep_svg]: https://david-dm.org/meeDamian/country-emoji.svg
-[dep_url]: https://david-dm.org/meeDamian/country-emoji
-[dev_dep_svg]: https://david-dm.org/meeDamian/country-emoji/dev-status.svg
-[dev_dep_url]: https://david-dm.org/meeDamian/country-emoji#info=devDependencies
+
+[license_svg]: https://img.shields.io/npm/l/country-emoji
+[license_url]: https://github.com/meeDamian/country-emoji/blob/master/LICENSE
+
+[tippin_svg]: https://img.shields.io/badge/donate-lightning-FDD023?logo=bitcoin&style=flat
+[tippin_url]: https://tippin.me/@meeDamian
 
 Converts between country names, ISO 3166-1 codes and flag emojis. **Has zero dependencies.**
 
@@ -78,7 +97,7 @@ Object.keys(countries).join(", ")
 
 ## Bugs and feedback
 
-If you discover a bug please report it [here](https://github.com/meeDamian/country-emoji/issues/new).  Express gratitude [here](https://donate.meedamian.com). 
+If you discover a bug please report it [here](https://github.com/meeDamian/country-emoji/issues/new).  Express gratitude [here](https://donate.meedamian.com).
 
 Mail me at bugs@meedamian.com, or on twitter [@meeDamian](http://twitter.com/meedamian).
 
