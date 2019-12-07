@@ -14,16 +14,16 @@ function fuzzyCompare(str, name) {
   // Cases like:
   //    "Vatican" <-> "Holy See (Vatican City State)"
   //    "Russia"  <-> "Russian Federation"
-  if (name.indexOf(str) !== -1 || str.indexOf(name) !== -1) {
+  if (name.includes(str) || str.includes(name)) {
     return true;
   }
 
   // Cases like:
   // "British Virgin Islands" <-> "Virgin Islands, British"
   // "Republic of Moldova"    <-> "Moldova, Republic of"
-  if (name.indexOf(',') !== -1) {
+  if (name.includes(',')) {
     const reversedName = name.split(', ').reverse().join(' ');
-    if (reversedName.indexOf(str) !== -1 || str.indexOf(reversedName) !== -1) {
+    if (reversedName.includes(str) || str.includes(reversedName)) {
       return true;
     }
   }
