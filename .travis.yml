@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - '12'
-  - '11'
-  - '10'
-  - '9'
+  - '13'
+  - '12'   # LTS;  until        2022-04-30
+  - '10'   # LTS;  until        2021-04-30
+  - '8'    # LTS;  remove after 2019-12-31
 
 stages:
   - test
