@@ -1,97 +1,97 @@
-import test from 'ava';
+const test = require('ava');
 
 const {
-  MAGIC_NUMBER,
+	MAGIC_NUMBER,
 
-  CODE_RE,
-  NAME_RE,
-  FLAG_RE,
+	CODE_RE,
+	NAME_RE,
+	FLAG_RE,
 
-  isCode,
-  fuzzyCompare,
+	isCode,
+	fuzzyCompare,
 
-  codeToName,
-  codeToFlag,
-  nameToCode,
-  flagToCode
+	codeToName,
+	codeToFlag,
+	nameToCode,
+	flagToCode
 } = require('../src/lib.js');
 
 test('MAGIC_NUMBER is exported properly', t => {
-  if (!MAGIC_NUMBER || typeof MAGIC_NUMBER !== 'number') {
-    t.fail();
-  }
+	if (!MAGIC_NUMBER || typeof MAGIC_NUMBER !== 'number') {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('CODE_RE is exported properly', t => {
-  if (!CODE_RE || !(CODE_RE instanceof RegExp)) {
-    t.fail();
-  }
+	if (!CODE_RE || !(CODE_RE instanceof RegExp)) {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('NAME_RE is exported properly', t => {
-  if (!NAME_RE || !(NAME_RE instanceof RegExp)) {
-    t.fail();
-  }
+	if (!NAME_RE || !(NAME_RE instanceof RegExp)) {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('FLAG_RE is exported properly', t => {
-  if (!FLAG_RE || !(FLAG_RE instanceof RegExp)) {
-    t.fail();
-  }
+	if (!FLAG_RE || !(FLAG_RE instanceof RegExp)) {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('isCode() is exported properly', t => {
-  if (!isCode || typeof isCode !== 'function') {
-    t.fail();
-  }
+	if (!isCode || typeof isCode !== 'function') {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('fuzzyCompare() is exported properly', t => {
-  if (!fuzzyCompare || typeof fuzzyCompare !== 'function') {
-    t.fail();
-  }
+	if (!fuzzyCompare || typeof fuzzyCompare !== 'function') {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('codeToName() is exported properly', t => {
-  if (!codeToName || typeof codeToName !== 'function') {
-    t.fail();
-  }
+	if (!codeToName || typeof codeToName !== 'function') {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('codeToFlag() is exported properly', t => {
-  if (!codeToFlag || typeof codeToFlag !== 'function') {
-    t.fail();
-  }
+	if (!codeToFlag || typeof codeToFlag !== 'function') {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('nameToCode() is exported properly', t => {
-  if (!nameToCode || typeof nameToCode !== 'function') {
-    t.fail();
-  }
+	if (!nameToCode || typeof nameToCode !== 'function') {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('flagToCode() is exported properly', t => {
-  if (!flagToCode || typeof flagToCode !== 'function') {
-    t.fail();
-  }
+	if (!flagToCode || typeof flagToCode !== 'function') {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });

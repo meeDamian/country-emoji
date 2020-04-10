@@ -41,9 +41,8 @@
   },
   "xo": {
     "esnext": true,
-    "envs": [
-      "node"
-    ],
-    "space": true
+    "rules": {
+      "unicorn/string-content": "off"
+    }
   }
 }

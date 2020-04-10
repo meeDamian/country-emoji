@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 'use strict';
 
-function print(str, out, comment = '') {
-  if (comment) {
-    comment = `// ${comment}\n`;
-  }
+function print(fnCall, out, comment = '') {
+	if (comment) {
+		comment = `// ${comment}\n`;
+	}
 
-  console.log(`${comment}${str}\n // ~> ${out}\n`);
+	console.log(`${comment}${fnCall}\n // ~> ${out}\n`);
 }
 
 const {flag, code, name, countries} = require('./src/main.js');

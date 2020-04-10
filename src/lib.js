@@ -8,163 +8,163 @@ const CODE_RE = /^[a-z]{2}$/i;
 const NAME_RE = /^.{2,}$/;
 const FLAG_RE = /\uD83C[\uDDE6-\uDDFF]/;
 
-function fuzzyCompare(str, name) {
-  name = name.toLowerCase();
+function fuzzyCompare(input, name) {
+	name = name.toLowerCase();
 
-  // Cases like:
-  //    "Vatican" <-> "Holy See (Vatican City State)"
-  //    "Russia"  <-> "Russian Federation"
-  if (name.includes(str) || str.includes(name)) {
-    return true;
-  }
+	// Cases like:
+	//    "Vatican" <-> "Holy See (Vatican City State)"
+	//    "Russia"  <-> "Russian Federation"
+	if (name.includes(input) || input.includes(name)) {
+		return true;
+	}
 
-  // Cases like:
-  // "British Virgin Islands" <-> "Virgin Islands, British"
-  // "Republic of Moldova"    <-> "Moldova, Republic of"
-  if (name.includes(',')) {
-    const reversedName = name.split(', ').reverse().join(' ');
-    if (reversedName.includes(str) || str.includes(reversedName)) {
-      return true;
-    }
-  }
+	// Cases like:
+	// "British Virgin Islands" <-> "Virgin Islands, British"
+	// "Republic of Moldova"    <-> "Moldova, Republic of"
+	if (name.includes(',')) {
+		const reversedName = name.split(', ').reverse().join(' ');
+		if (reversedName.includes(input) || input.includes(reversedName)) {
+			return true;
+		}
+	}
 
-  return false;
+	return false;
 }
 
 function isCode(code) {
-  code = code.toUpperCase();
+	code = code.toUpperCase();
 
-  return countries[code] ? code : undefined;
+	return countries[code] ? code : undefined;
 }
 
 function nameToCode(name) {
-  if (!name || !NAME_RE.test(name)) {
-    return;
-  }
+	if (!name || !NAME_RE.test(name)) {
+		return;
+	}
 
-  name = name.trim().toLowerCase();
+	name = name.trim().toLowerCase();
 
-  // Look for exact match
-  // NOTE: normal loop to terminate ASAP
-  for (const code in countries) {
-    if ({}.hasOwnProperty.call(countries, code)) {
-      let names = countries[code];
+	// Look for exact match
+	// NOTE: normal loop to terminate ASAP
+	for (const code in countries) {
+		if ({}.hasOwnProperty.call(countries, code)) {
+			let names = countries[code];
 
-      if (!Array.isArray(names)) {
-        names = [names];
-      }
+			if (!Array.isArray(names)) {
+				names = [names];
+			}
 
-      for (const n of names) {
-        if (n.toLowerCase() === name) {
-          return code;
-        }
-      }
-    }
-  }
+			for (const n of names) {
+				if (n.toLowerCase() === name) {
+					return code;
+				}
+			}
+		}
+	}
 
-  // Look for inexact match
-  // NOTE: .filter() to aggregate all matches
-  const matches = Object.keys(countries)
-    .filter(code => {
-      let names = countries[code];
+	// Look for inexact match
+	// NOTE: .filter() to aggregate all matches
+	const matches = Object.keys(countries)
+		.filter(code => {
+			let names = countries[code];
 
-      if (!Array.isArray(names)) {
-        names = [names];
-      }
+			if (!Array.isArray(names)) {
+				names = [names];
+			}
 
-      for (const n of names) {
-        if (fuzzyCompare(name, n)) {
-          return true;
-        }
-      }
+			for (const n of names) {
+				if (fuzzyCompare(name, n)) {
+					return true;
+				}
+			}
 
-      return false;
-    });
+			return false;
+		});
 
-  // Return only when exactly one match was found
-  //   prevents cases like "United"
-  if (matches.length === 1) {
-    return matches[0];
-  }
+	// Return only when exactly one match was found
+	//   prevents cases like "United"
+	if (matches.length === 1) {
+		return matches[0];
+	}
 }
 
 function codeToName(code) {
-  if (!code || !CODE_RE.test(code)) {
-    return;
-  }
+	if (!code || !CODE_RE.test(code)) {
+		return;
+	}
 
-  const names = countries[code.toUpperCase()];
-  if (Array.isArray(names)) {
-    return names[0];
-  }
+	const names = countries[code.toUpperCase()];
+	if (Array.isArray(names)) {
+		return names[0];
+	}
 
-  return names;
+	return names;
 }
 
 function codeToFlag(code) {
-  if (!code || !CODE_RE.test(code)) {
-    return;
-  }
+	if (!code || !CODE_RE.test(code)) {
+		return;
+	}
 
-  code = isCode(code);
-  if (!code) {
-    return;
-  }
+	code = isCode(code);
+	if (!code) {
+		return;
+	}
 
-  if (String && String.fromCodePoint) {
-    return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.charCodeAt()));
-  }
+	if (String && String.fromCodePoint) {
+		return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.charCodeAt()));
+	}
 }
 
 function flagToCode(flag) {
-  if (!flag || !FLAG_RE.test(flag)) {
-    return;
-  }
+	if (!flag || !FLAG_RE.test(flag)) {
+		return;
+	}
 
-  return isCode([...flag].map(c => c.codePointAt(0) - MAGIC_NUMBER).map(c => String.fromCharCode(c)).join(''));
+	return isCode([...flag].map(c => c.codePointAt(0) - MAGIC_NUMBER).map(c => String.fromCharCode(c)).join(''));
 }
 
 // Takes either emoji or full name
 function code(input) {
-  return flagToCode(input) || nameToCode(input);
+	return flagToCode(input) || nameToCode(input);
 }
 
 // Takes either code or full name
 function flag(input) {
-  if (!CODE_RE.test(input) || input === 'UK') {
-    input = nameToCode(input);
-  }
+	if (!CODE_RE.test(input) || input === 'UK') {
+		input = nameToCode(input);
+	}
 
-  return codeToFlag(input);
+	return codeToFlag(input);
 }
 
 // Takes either emoji or code
 function name(input) {
-  if (FLAG_RE.test(input)) {
-    input = flagToCode(input);
-  }
+	if (FLAG_RE.test(input)) {
+		input = flagToCode(input);
+	}
 
-  return codeToName(input);
+	return codeToName(input);
 }
 
 module.exports = {
-  MAGIC_NUMBER,
+	MAGIC_NUMBER,
 
-  CODE_RE,
-  NAME_RE,
-  FLAG_RE,
+	CODE_RE,
+	NAME_RE,
+	FLAG_RE,
 
-  code,
-  flag,
-  name,
+	code,
+	flag,
+	name,
 
-  countries,
+	countries,
 
-  isCode,
-  fuzzyCompare,
+	isCode,
+	fuzzyCompare,
 
-  codeToName,
-  codeToFlag,
-  nameToCode,
-  flagToCode
+	codeToName,
+	codeToFlag,
+	nameToCode,
+	flagToCode
 };

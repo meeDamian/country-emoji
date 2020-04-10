@@ -1,185 +1,185 @@
-import test from 'ava';
+const test = require('ava');
 
 test('[main.js].code() is exported properly', t => {
-  const fn = require('../src/main.js').code;
+	const fn = require('../src/main.js').code;
 
-  if (!fn || typeof fn !== 'function') {
-    t.fail();
-  }
+	if (!fn || typeof fn !== 'function') {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('[lib.js].code() is exported properly', t => {
-  const fn = require('../src/lib.js').code;
+	const fn = require('../src/lib.js').code;
 
-  if (!fn || typeof fn !== 'function') {
-    t.fail();
-  }
+	if (!fn || typeof fn !== 'function') {
+		t.fail();
+	}
 
-  t.pass();
+	t.pass();
 });
 
 const {code} = require('../src/lib.js');
 
 test('fails if empty', t => {
-  const iso3166 = code();
-  if (iso3166 !== undefined) {
-    t.fail(`${iso3166} instead of undefined`);
-  }
+	const iso3166 = code();
+	if (iso3166 !== undefined) {
+		t.fail(`${iso3166} instead of undefined`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 //
 // from country NAMES
 //
 test('converts name', t => {
-  const iso3166 = code('Belgium');
-  if (!iso3166 || iso3166 !== 'BE') {
-    t.fail(`${iso3166} instead of BE`);
-  }
+	const iso3166 = code('Belgium');
+	if (!iso3166 || iso3166 !== 'BE') {
+		t.fail(`${iso3166} instead of BE`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('converts short name', t => {
-  const iso3166 = code('UK');
-  if (!iso3166 || iso3166 !== 'GB') {
-    t.fail(`${iso3166} instead of GB`);
-  }
+	const iso3166 = code('UK');
+	if (!iso3166 || iso3166 !== 'GB') {
+		t.fail(`${iso3166} instead of GB`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('converts partial name', t => {
-  const iso3166 = code('Brunei');
-  if (!iso3166 || iso3166 !== 'BN') {
-    t.fail(`${iso3166} instead of BN`);
-  }
+	const iso3166 = code('Brunei');
+	if (!iso3166 || iso3166 !== 'BN') {
+		t.fail(`${iso3166} instead of BN`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('converts alternative name', t => {
-  const iso3166 = code('South Korea');
-  if (!iso3166 || iso3166 !== 'KR') {
-    t.fail(`${iso3166} instead of KR`);
-  }
+	const iso3166 = code('South Korea');
+	if (!iso3166 || iso3166 !== 'KR') {
+		t.fail(`${iso3166} instead of KR`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('converts weird name notation', t => {
-  const iso3166 = code('Iran, Islamic Republic Of');
-  if (!iso3166 || iso3166 !== 'IR') {
-    t.fail(`${iso3166} instead of IR`);
-  }
+	const iso3166 = code('Iran, Islamic Republic Of');
+	if (!iso3166 || iso3166 !== 'IR') {
+		t.fail(`${iso3166} instead of IR`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('converts less weird name notation', t => {
-  const iso3166 = code('The Former Yugoslav Republic of Macedonia');
-  if (!iso3166 || iso3166 !== 'MK') {
-    t.fail(`${iso3166} instead of MK`);
-  }
+	const iso3166 = code('The Former Yugoslav Republic of Macedonia');
+	if (!iso3166 || iso3166 !== 'MK') {
+		t.fail(`${iso3166} instead of MK`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('converts name with weird characters', t => {
-  const iso3166 = code('Åland Islands');
-  if (!iso3166 || iso3166 !== 'AX') {
-    t.fail(`${iso3166} instead of AX`);
-  }
+	const iso3166 = code('Åland Islands');
+	if (!iso3166 || iso3166 !== 'AX') {
+		t.fail(`${iso3166} instead of AX`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('converts name with different casing', t => {
-  const iso3166 = code('BELARUS');
-  if (!iso3166 || iso3166 !== 'BY') {
-    t.fail(`${iso3166} instead of BY`);
-  }
+	const iso3166 = code('BELARUS');
+	if (!iso3166 || iso3166 !== 'BY') {
+		t.fail(`${iso3166} instead of BY`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('converts if name within string', t => {
-  const iso3166 = code('Dear Canada is the land of Maple syrup.');
-  if (!iso3166 || iso3166 !== 'CA') {
-    t.fail(`${iso3166} instead of CA`);
-  }
+	const iso3166 = code('Dear Canada is the land of Maple syrup.');
+	if (!iso3166 || iso3166 !== 'CA') {
+		t.fail(`${iso3166} instead of CA`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('fails on name conflict', t => {
-  const iso3166 = code('United');
-  if (iso3166 !== undefined) {
-    t.fail(`${iso3166} instead of undefined`);
-  }
+	const iso3166 = code('United');
+	if (iso3166 !== undefined) {
+		t.fail(`${iso3166} instead of undefined`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('fails if two names in string', t => {
-  const iso3166 = code('Cyprus & Greece');
-  if (iso3166 !== undefined) {
-    t.fail(`${iso3166} instead of undefined`);
-  }
+	const iso3166 = code('Cyprus & Greece');
+	if (iso3166 !== undefined) {
+		t.fail(`${iso3166} instead of undefined`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('fails on no match', t => {
-  const iso3166 = code('there is no country named like that');
-  if (iso3166 !== undefined) {
-    t.fail(`${iso3166} instead of undefined`);
-  }
+	const iso3166 = code('there is no country named like that');
+	if (iso3166 !== undefined) {
+		t.fail(`${iso3166} instead of undefined`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 //
 // from country CODES
 //
 test('fails if code given', t => {
-  const iso3166 = code('AZ');
-  if (iso3166 !== undefined) {
-    t.fail(`${iso3166} instead of undefined`);
-  }
+	const iso3166 = code('AZ');
+	if (iso3166 !== undefined) {
+		t.fail(`${iso3166} instead of undefined`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 //
 // from country FLAG
 //
 test('converts if valid flag given', t => {
-  const iso3166 = code('🇲🇴');
-  if (iso3166 !== 'MO') {
-    t.fail(`${iso3166} instead of MO`);
-  }
+	const iso3166 = code('🇲🇴');
+	if (iso3166 !== 'MO') {
+		t.fail(`${iso3166} instead of MO`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('fails if invalid flag given', t => {
-  const iso3166 = code('🇿🇧');
-  if (iso3166 !== undefined) {
-    t.fail(`${iso3166} instead of undefined`);
-  }
+	const iso3166 = code('🇿🇧');
+	if (iso3166 !== undefined) {
+		t.fail(`${iso3166} instead of undefined`);
+	}
 
-  t.pass();
+	t.pass();
 });
 
 test('fails if some other emoji given', t => {
-  const iso3166 = code('🌸');
-  if (iso3166 !== undefined) {
-    t.fail(`${iso3166} instead of undefined`);
-  }
+	const iso3166 = code('🌸');
+	if (iso3166 !== undefined) {
+		t.fail(`${iso3166} instead of undefined`);
+	}
 
-  t.pass();
+	t.pass();
 });
