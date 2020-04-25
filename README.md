@@ -95,6 +95,14 @@ Object.keys(countries).join(", ")
 
 ```
 
+### Don't want JS?
+
+Check out the following:
+
+* **Swift:** [SwiftFlags](https://github.com/BubiDevs/SwiftFlags) (ref: https://github.com/meeDamian/country-emoji/issues/16)
+
+PS. Happy to add more here :).
+
 ## Bugs and feedback
 
 If you discover a bug please report it [here](https://github.com/meeDamian/country-emoji/issues/new).  Express gratitude [here](https://donate.meedamian.com).
