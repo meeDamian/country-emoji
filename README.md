@@ -99,7 +99,7 @@ Object.keys(countries).join(", ")
 
 Check out the following:
 
-* **Swift:** [SwiftFlags](https://github.com/BubiDevs/SwiftFlags) (ref: https://github.com/meeDamian/country-emoji/issues/16)
+* **Swift:** [SwiftFlags](https://github.com/BubiDevs/SwiftFlags) (ref: [#16](https://github.com/meeDamian/country-emoji/issues/16))
 
 PS. Happy to add more here :).
 
