@@ -19,8 +19,8 @@ function fuzzyCompare(input, name) {
 	}
 
 	// Cases like:
-	// "British Virgin Islands" <-> "Virgin Islands, British"
-	// "Republic of Moldova"    <-> "Moldova, Republic of"
+	//    "British Virgin Islands" <-> "Virgin Islands, British"
+	//    "Republic of Moldova"    <-> "Moldova, Republic of"
 	if (name.includes(',')) {
 		const reversedName = name.split(', ').reverse().join(' ');
 		if (reversedName.includes(input) || input.includes(reversedName)) {
