@@ -1,5 +1,6 @@
 language: node_js
 node_js:
+  - 14
   - 13
   - 12   # LTS;  until 2022-04-30
   - 10   # LTS;  until 2021-04-30
