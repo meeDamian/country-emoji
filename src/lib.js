@@ -112,7 +112,7 @@ function codeToFlag(code) {
 	}
 
 	if (String && String.fromCodePoint) {
-		return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.charCodeAt()));
+		return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.charCodeAt(0)));
 	}
 }
 
