@@ -39,9 +39,6 @@
     "xo": "^0.32.1"
   },
   "xo": {
-    "esnext": true,
-    "rules": {
-      "unicorn/string-content": "off"
-    }
+    "esnext": true
   }
 }
