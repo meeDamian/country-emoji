@@ -97,6 +97,15 @@ test('converts name with weird characters', t => {
 	t.pass();
 });
 
+test('converts Republic of North Macedonia', t => {
+	const iso3166 = code('Republic of North Macedonia');
+	if (!iso3166 || iso3166 !== 'MK') {
+		t.fail(`${iso3166} instead of MK`);
+	}
+
+	t.pass();
+});
+
 test('converts name with different casing', t => {
 	const iso3166 = code('BELARUS');
 	if (!iso3166 || iso3166 !== 'BY') {
