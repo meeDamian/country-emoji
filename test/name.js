@@ -73,10 +73,10 @@ test('returns first name from array', t => {
 	t.pass();
 });
 
-test('correct macedonian coutry name', t => {
-	const country = name('MK');
-	if (country !== 'Republic of North Macedonia') {
-		t.fail(`${country} instead of Republic of North Macedonia`);
+test('returns normalized name', t => {
+	const country = name('VG');
+	if (country !== 'British Virgin Islands') {
+		t.fail(`${country} instead of British Virgin Islands`);
 	}
 
 	t.pass();

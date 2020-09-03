@@ -95,7 +95,7 @@ function codeToName(code) {
 		return;
 	}
 
-	return names[0];
+	return normalizeName(names[0]);
 }
 
 function codeToFlag(code) {
