@@ -44,35 +44,19 @@ function nameToCode(name) {
 
 	name = name.trim().toLowerCase();
 
-	// Look for exact match
-	// NOTE: normal loop to terminate ASAP
-	for (const code in countries) {
-		if ({}.hasOwnProperty.call(countries, code)) {
-			let names = countries[code];
-
-			if (!Array.isArray(names)) {
-				names = [names];
-			}
-
-			for (const n of names) {
-				if (n.toLowerCase() === name) {
-					return code;
-				}
+	// Look for an exact (but case-insensitive) match
+	for (const [code, names] of Object.entries(countries)) {
+		for (const n of names) {
+			if (n.toLowerCase() === name) {
+				return code;
 			}
 		}
 	}
 
-	// Look for inexact match
-	// NOTE: .filter() to aggregate all matches
+	// Look for all possible inexact matches
 	const matches = Object.keys(countries)
 		.filter(code => {
-			let names = countries[code];
-
-			if (!Array.isArray(names)) {
-				names = [names];
-			}
-
-			for (const n of names) {
+			for (const n of countries[code]) {
 				if (fuzzyCompare(name, n)) {
 					return true;
 				}
@@ -94,11 +78,11 @@ function codeToName(code) {
 	}
 
 	const names = countries[code.toUpperCase()];
-	if (Array.isArray(names)) {
-		return names[0];
+	if (!names) {
+		return;
 	}
 
-	return names;
+	return names[0];
 }
 
 function codeToFlag(code) {
