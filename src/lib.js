@@ -97,9 +97,7 @@ function codeToFlag(code) {
 		return;
 	}
 
-	if (String && String.fromCodePoint) {
-		return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.charCodeAt(0)));
-	}
+	return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.charCodeAt(0)));
 }
 
 function flagToCode(flag) {
