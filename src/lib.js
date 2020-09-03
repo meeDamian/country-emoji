@@ -8,6 +8,16 @@ const CODE_RE = /^[a-z]{2}$/i;
 const NAME_RE = /^.{2,}$/;
 const FLAG_RE = /\uD83C[\uDDE6-\uDDFF]/;
 
+const NAME_SEP = ', ';
+
+function normalizeName(name) {
+	if (!name.includes(NAME_SEP)) {
+		return name;
+	}
+
+	return name.split(NAME_SEP).reverse().join(' ');
+}
+
 function fuzzyCompare(input, name) {
 	name = name.toLowerCase();
 
@@ -18,12 +28,13 @@ function fuzzyCompare(input, name) {
 		return true;
 	}
 
+	const normalizedName = normalizeName(name);
+
 	// Cases like:
 	//    "British Virgin Islands" <-> "Virgin Islands, British"
 	//    "Republic of Moldova"    <-> "Moldova, Republic of"
-	if (name.includes(',')) {
-		const reversedName = name.split(', ').reverse().join(' ');
-		if (reversedName.includes(input) || input.includes(reversedName)) {
+	if (normalizedName !== name) {
+		if (normalizedName.includes(input) || input.includes(normalizedName)) {
 			return true;
 		}
 	}
