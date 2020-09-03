@@ -73,6 +73,15 @@ test('returns first name from array', t => {
 	t.pass();
 });
 
+test('correct macedonian coutry name', t => {
+	const country = name('MK');
+	if (country !== 'Republic of North Macedonia') {
+		t.fail(`${country} instead of Republic of North Macedonia`);
+	}
+
+	t.pass();
+});
+
 test('fails if invalid code given', t => {
 	const country = name('YY');
 	if (country !== undefined) {
