@@ -67,9 +67,11 @@ function nameToCode(name) {
 
 	// Return only when exactly one match was found
 	//   prevents cases like "United"
-	if (matches.length === 1) {
-		return matches[0];
+	if (matches.length !== 1) {
+		return;
 	}
+
+	return matches[0];
 }
 
 function codeToName(code) {
