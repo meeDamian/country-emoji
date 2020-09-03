@@ -73,6 +73,15 @@ test('returns first name from array', t => {
 	t.pass();
 });
 
+test('returns normalized name', t => {
+	const country = name('VG');
+	if (country !== 'British Virgin Islands') {
+		t.fail(`${country} instead of British Virgin Islands`);
+	}
+
+	t.pass();
+});
+
 test('fails if invalid code given', t => {
 	const country = name('YY');
 	if (country !== undefined) {
