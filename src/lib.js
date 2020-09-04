@@ -8,6 +8,16 @@ const CODE_RE = /^[a-z]{2}$/i;
 const NAME_RE = /^.{2,}$/;
 const FLAG_RE = /\uD83C[\uDDE6-\uDDFF]/;
 
+const NAME_SEP = ', ';
+
+function normalizeName(name) {
+	if (!name.includes(NAME_SEP)) {
+		return name;
+	}
+
+	return name.split(NAME_SEP).reverse().join(' ');
+}
+
 function fuzzyCompare(input, name) {
 	name = name.toLowerCase();
 
@@ -18,12 +28,13 @@ function fuzzyCompare(input, name) {
 		return true;
 	}
 
+	const normalizedName = normalizeName(name);
+
 	// Cases like:
 	//    "British Virgin Islands" <-> "Virgin Islands, British"
 	//    "Republic of Moldova"    <-> "Moldova, Republic of"
-	if (name.includes(',')) {
-		const reversedName = name.split(', ').reverse().join(' ');
-		if (reversedName.includes(input) || input.includes(reversedName)) {
+	if (normalizedName !== name) {
+		if (normalizedName.includes(input) || input.includes(normalizedName)) {
 			return true;
 		}
 	}
@@ -44,35 +55,19 @@ function nameToCode(name) {
 
 	name = name.trim().toLowerCase();
 
-	// Look for exact match
-	// NOTE: normal loop to terminate ASAP
-	for (const code in countries) {
-		if ({}.hasOwnProperty.call(countries, code)) {
-			let names = countries[code];
-
-			if (!Array.isArray(names)) {
-				names = [names];
-			}
-
-			for (const n of names) {
-				if (n.toLowerCase() === name) {
-					return code;
-				}
+	// Look for an exact (but case-insensitive) match
+	for (const [code, names] of Object.entries(countries)) {
+		for (const n of names) {
+			if (n.toLowerCase() === name) {
+				return code;
 			}
 		}
 	}
 
-	// Look for inexact match
-	// NOTE: .filter() to aggregate all matches
+	// Look for all possible inexact matches
 	const matches = Object.keys(countries)
 		.filter(code => {
-			let names = countries[code];
-
-			if (!Array.isArray(names)) {
-				names = [names];
-			}
-
-			for (const n of names) {
+			for (const n of countries[code]) {
 				if (fuzzyCompare(name, n)) {
 					return true;
 				}
@@ -83,9 +78,11 @@ function nameToCode(name) {
 
 	// Return only when exactly one match was found
 	//   prevents cases like "United"
-	if (matches.length === 1) {
-		return matches[0];
+	if (matches.length !== 1) {
+		return;
 	}
+
+	return matches[0];
 }
 
 function codeToName(code) {
@@ -94,11 +91,11 @@ function codeToName(code) {
 	}
 
 	const names = countries[code.toUpperCase()];
-	if (Array.isArray(names)) {
-		return names[0];
+	if (!names) {
+		return;
 	}
 
-	return names;
+	return normalizeName(names[0]);
 }
 
 function codeToFlag(code) {
@@ -111,9 +108,7 @@ function codeToFlag(code) {
 		return;
 	}
 
-	if (String && String.fromCodePoint) {
-		return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.charCodeAt(0)));
-	}
+	return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.charCodeAt(0)));
 }
 
 function flagToCode(flag) {

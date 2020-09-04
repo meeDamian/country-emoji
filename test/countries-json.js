@@ -32,10 +32,10 @@ test('All country codes are UPPERCASE', t => {
 	t.pass();
 });
 
-test('All values must either be a string, or an array ', t => {
-	const outliers = Object.entries(countries).filter(([_, value]) => {
-		return typeof value !== 'string' && !Array.isArray(value);
-	}).map(v => v.join(':'));
+test('All values must be an array ', t => {
+	const outliers = Object.values(countries)
+		.filter(value => !Array.isArray(value))
+		.map(v => v.join(':'));
 
 	if (outliers.length > 0) {
 		t.fail(`Invalid value types: ${outliers.join(', ')}`);
@@ -59,11 +59,6 @@ test('All values must be unique', t => {
 	}
 
 	for (const value of Object.values(countries)) {
-		if (typeof value === 'string') {
-			add(value);
-			continue;
-		}
-
 		for (const v of value) {
 			add(v);
 		}
@@ -74,7 +69,7 @@ test('All values must be unique', t => {
 	if (offenders.length > 0) {
 		const x = offenders.map(({n, orig}) => ({n, orig: Object.keys(orig).join(', ')}))
 			.sort((a, b) => (a.n > b.n) ? -1 : 1)
-			.map(({n, orig}) => `${n} occurences of ${orig}`);
+			.map(({n, orig}) => `${n} occurrences of ${orig}`);
 
 		t.fail(`${offenders.length} non-unique values present:\n\t${x.join('\n\t')}`);
 	}
