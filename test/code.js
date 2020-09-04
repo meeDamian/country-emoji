@@ -79,7 +79,7 @@ test('converts weird name notation', t => {
 	t.pass();
 });
 
-test('converts less weird name notation', t => {
+test('converts new macedonian name', t => {
 	const iso3166 = code('The Former Yugoslav Republic of Macedonia');
 	if (!iso3166 || iso3166 !== 'MK') {
 		t.fail(`${iso3166} instead of MK`);
@@ -92,6 +92,15 @@ test('converts name with weird characters', t => {
 	const iso3166 = code('Åland Islands');
 	if (!iso3166 || iso3166 !== 'AX') {
 		t.fail(`${iso3166} instead of AX`);
+	}
+
+	t.pass();
+});
+
+test('converts Republic of North Macedonia', t => {
+	const iso3166 = code('Republic of North Macedonia');
+	if (!iso3166 || iso3166 !== 'MK') {
+		t.fail(`${iso3166} instead of MK`);
 	}
 
 	t.pass();
