@@ -35,7 +35,6 @@ declare module 'country-emoji' {
 	*
 	* @example {"BG": ["Bulgaria", "Bulgarian"]}; countries["BG"] would be ["Bulgaria", "Bulgarian"]
 	*
-	* 
 	*/
 	export const countries: ICountries;
 }
