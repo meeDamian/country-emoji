@@ -1,6 +1,6 @@
 {
   "name": "country-emoji",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "Converts between country names, ISO 3166-1 codes and flag emojis.",
   "main": "dist/main.js",
   "files": [
@@ -8,6 +8,7 @@
     "dist/lib.js",
     "countries.json"
   ],
+  "types": "./index.d.ts",
   "scripts": {
     "test": "xo && nyc ava && nyc report --reporter=text-lcov > coverage.lcov",
     "build": "babel src -d dist",
