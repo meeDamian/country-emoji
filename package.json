@@ -6,7 +6,8 @@
   "files": [
     "dist/main.js",
     "dist/lib.js",
-    "countries.json"
+    "countries.json",
+    "index.d.ts"
   ],
   "types": "./index.d.ts",
   "scripts": {
