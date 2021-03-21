@@ -100,6 +100,9 @@ Object.keys(countries).join(", ")
 Check out the following:
 
 * **Swift:** [SwiftFlags](https://github.com/BubiDevs/SwiftFlags) (ref: [#16](https://github.com/meeDamian/country-emoji/issues/16))
+* **Rust:** [country-emoji](https://github.com/leodutra/country-emoji) [[crates.io]] (ref: [#20](https://github.com/meeDamian/country-emoji/issues/20))
+
+[crates.io]: https://crates.io/crates/country-emoji
 
 PS. Happy to add more here :).
 
