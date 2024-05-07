@@ -48,11 +48,7 @@ function nameToCode(name) {
 	// NOTE: normal loop to terminate ASAP
 	for (const code in countries) {
 		if ({}.hasOwnProperty.call(countries, code)) {
-			let names = countries[code];
-
-			if (!Array.isArray(names)) {
-				names = [names];
-			}
+			const names = countries[code];
 
 			for (const n of names) {
 				if (n.toLowerCase() === name) {
@@ -66,11 +62,7 @@ function nameToCode(name) {
 	// NOTE: .filter() to aggregate all matches
 	const matches = Object.keys(countries)
 		.filter(code => {
-			let names = countries[code];
-
-			if (!Array.isArray(names)) {
-				names = [names];
-			}
+			const names = countries[code];
 
 			for (const n of names) {
 				if (fuzzyCompare(name, n)) {
