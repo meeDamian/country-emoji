@@ -1,9 +1,8 @@
 import test from 'ava';
-
 import countries from '../countries.json' with { type: 'json' };
 
 test('[countries.json] is valid, and can be imported', async t => {
-	const data = await import('../countries.json', { with: {type: 'json'}});
+	const data = await import('../countries.json', {with: {type: 'json'}});
 	t.true(typeof data === 'object');
 	t.truthy(data);
 });

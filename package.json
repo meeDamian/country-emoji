@@ -49,8 +49,9 @@
   "xo": {
     "parser": "@babel/eslint-parser",
     "rules": {
-      "@typescript-eslint/consistent-indexed-object-style": 0,
-      "unicorn/prevent-abbreviations": "off"
+      "unicorn/prefer-export-from": "off",
+      "unicorn/prevent-abbreviations": "off",
+      "no-use-extend-native/no-use-extend-native": "off"
     }
   }
 }

@@ -145,4 +145,4 @@ export function name(input) {
 	return codeToName(input);
 }
 
-export { countries };
+export {countries};
