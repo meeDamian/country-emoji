@@ -1,5 +1,3 @@
-'use strict';
-
-const {flag, name, code, countries} = require('./lib.js');
-
-module.exports = {flag, name, code, countries};
+export {
+	name, flag, code, countries,
+} from './lib.js';

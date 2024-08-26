@@ -1,15 +1,14 @@
 #!/usr/bin/env node
-'use strict';
 
-function print(fnCall, out, comment = '') {
-	if (comment) {
-		comment = `// ${comment}\n`;
-	}
+import {
+	flag, code, name, countries,
+} from './src/main.js';
 
-	console.log(`${comment}${fnCall}\n // ~> ${out}\n`);
+function print(functionCall, out, comment = '') {
+	comment &&= `// ${comment}\n`;
+
+	console.log(`${comment}${functionCall}\n // ~> ${out}\n`);
 }
-
-const {flag, code, name, countries} = require('./src/main.js');
 
 print('flag(\'CL\')', flag('CL'));
 print('code(\'🇨🇦\')', code('🇨🇦'));

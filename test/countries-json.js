@@ -1,47 +1,29 @@
-const test = require('ava');
+import test from 'ava';
 
-test('[countries.json] is valid, and can be imported', t => {
-	const countries = require('../countries.json');
+import countries from '../countries.json' with { type: 'json' };
 
-	if (!countries || typeof countries !== 'object') {
-		t.fail();
-	}
-
-	t.pass();
+test('[countries.json] is valid, and can be imported', async t => {
+	const data = await import('../countries.json', { with: {type: 'json'}});
+	t.true(typeof data === 'object');
+	t.truthy(data);
 });
-
-const countries = require('../countries.json');
 
 test('All country codes are two characters long', t => {
 	const outliers = Object.keys(countries).filter(k => k.length !== 2);
-
-	if (outliers.length > 0) {
-		t.fail(`Invalid length codes: ${outliers.join(', ')}`);
-	}
-
-	t.pass();
+	t.deepEqual(outliers, [], `Invalid length codes: ${outliers.join(', ')}`);
 });
 
 test('All country codes are UPPERCASE', t => {
 	const outliers = Object.keys(countries).filter(k => k !== k.toUpperCase());
-
-	if (outliers.length > 0) {
-		t.fail(`Invalid case codes: ${outliers.join(', ')}`);
-	}
-
-	t.pass();
+	t.deepEqual(outliers, [], `Invalid case codes: ${outliers.join(', ')}`);
 });
 
-test('All values must either be a string, or an array ', t => {
-	const outliers = Object.entries(countries).filter(([_, value]) => {
-		return typeof value !== 'string' && !Array.isArray(value);
-	}).map(v => v.join(':'));
+test('All values must either be a string or an array', t => {
+	const outliers = Object.entries(countries)
+		.filter(([, value]) => typeof value !== 'string' && !Array.isArray(value))
+		.map(v => v.join(':'));
 
-	if (outliers.length > 0) {
-		t.fail(`Invalid value types: ${outliers.join(', ')}`);
-	}
-
-	t.pass();
+	t.deepEqual(outliers, [], `Invalid value types: ${outliers.join(', ')}`);
 });
 
 test('All values must be unique', t => {
