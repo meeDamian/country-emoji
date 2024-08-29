@@ -8,20 +8,37 @@ export const FLAG_RE = /\uD83C[\uDDE6-\uDDFF]/;
 
 const NAME_SEP = ', ';
 
+// Turn returned names from ex. "Virgin Islands, British" into "British Virgin Islands"
+export function normalizeOutput(name) {
+	if (!name) {
+		return name;
+	}
+
+	if (name.includes(NAME_SEP)) {
+		name = name.split(NAME_SEP).reverse().join(' ');
+	}
+
+	return name;
+}
+
+// For all non-empty strings, strip out diacritics, replace & with 'and', and turn "weird form" in
 export function normalizeName(name) {
 	if (!name) {
 		return name;
 	}
 
+	// Replace & with and
 	name = name.replace(/\s*&\s*/g, ' and ');
 
-	if (!name.includes(NAME_SEP)) {
-		return name;
-	}
+	// Replace diacritics with their base characters
+	name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-	return name.split(NAME_SEP).reverse().join(' ');
+	name = normalizeOutput(name)
+
+	return name;
 }
 
+// Compare two names, allowing for differences
 export function fuzzyCompare(input, name) {
 	name = name.toLowerCase();
 
@@ -86,7 +103,7 @@ export function codeToName(code) {
 		return;
 	}
 
-	return normalizeName(countries[code.toUpperCase()]?.[0]);
+	return normalizeOutput(countries[code.toUpperCase()]?.[0]);
 }
 
 export function codeToFlag(code) {
