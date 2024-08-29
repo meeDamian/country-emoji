@@ -12,11 +12,10 @@
   ],
   "types": "./index.d.ts",
   "scripts": {
-    "test": "xo && check-dts && c8 ava && c8 report --reporter=text-lcov > coverage.lcov",
-    "test-ava": "ava",
-    "test-dts": "check-dts",
-    "test-cover": "c8 ava && c8 report --reporter=text-lcov > coverage.lcov",
+    "lint": "xo && check-dts",
     "build": "babel src -d dist",
+    "test": "c8 ava && c8 report --reporter=text-lcov > coverage.lcov",
+    "test-ava": "ava",
     "prepublishOnly": "npm run build"
   },
   "repository": {
