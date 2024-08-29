@@ -71,7 +71,7 @@ test('converts when `&` used in place of `and`', t => {
 
 test('converts country name where substring match with other country exists', t => {
 	const emoji = flag('South Sudan');
-	t.is(emoji, '🇸🇸', 'Should return 🇸🇸for South Sudan');
+	t.is(emoji, '🇸🇸', 'Should return 🇸🇸 for South Sudan');
 });
 
 test('fails on name conflict', t => {
