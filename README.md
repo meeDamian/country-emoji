@@ -38,6 +38,8 @@ $ npm install --save country-emoji
 
 ```js
 const {flag, code, name, countries} = require('country-emoji');
+// or
+import {flag, code, name, countries} from 'country-emoji';
 
 flag('CL')
  // ~> 🇨🇱
