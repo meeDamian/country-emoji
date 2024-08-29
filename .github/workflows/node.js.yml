@@ -8,6 +8,8 @@ on:
     branches: ['master', 'main']
   pull_request:
     branches: ['master', 'main']
+  release:
+    types: [created]
 
 jobs:
   test:
@@ -31,3 +33,27 @@ jobs:
         uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 22
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm ci
+    - run: npm run build
+    - name: Publish to npm
+      run: |
+        if [[ "${{ github.ref }}" == *-beta* ]]; then
+          npm publish --tag beta
+        elif [[ "${{ github.ref }}" == *-alpha* ]]; then
+          npm publish --tag alpha
+        else
+          npm publish
+        fi
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
