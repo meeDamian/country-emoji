@@ -64,6 +64,11 @@ test('converts name with different casing', t => {
 	t.is(iso3166, 'BY', 'Should return BY for BELARUS');
 });
 
+test('finds countries with weird punctuation', t => {
+	const iso3166 = code('Türkiye');
+	t.is(iso3166, 'TR', 'Should return TR for Türkiye');
+});
+
 test('converts if name within string', t => {
 	const iso3166 = code('Dear Canada is the land of Maple syrup.');
 	t.is(iso3166, 'CA', 'Should return CA for string containing Canada');

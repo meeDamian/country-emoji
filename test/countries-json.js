@@ -17,9 +17,9 @@ test('All country codes are UPPERCASE', t => {
 	t.deepEqual(outliers, [], `Invalid case codes: ${outliers.join(', ')}`);
 });
 
-test('All values must either be a string or an array', t => {
+test('All values must be an array with at least one element', t => {
 	const outliers = Object.entries(countries)
-		.filter(([, value]) => typeof value !== 'string' && !Array.isArray(value))
+		.filter(([, value]) => !Array.isArray(value) || value.length === 0)
 		.map(v => v.join(':'));
 
 	t.deepEqual(outliers, [], `Invalid value types: ${outliers.join(', ')}`);

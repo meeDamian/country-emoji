@@ -43,41 +43,17 @@ export function nameToCode(name) {
 	name = name.trim().toLowerCase();
 
 	// Look for exact match
-	// NOTE: normal loop to terminate ASAP
-	for (const code in countries) {
-		if (Object.hasOwn(countries, code)) {
-			let names = countries[code];
-
-			if (!Array.isArray(names)) {
-				names = [names];
-			}
-
-			for (const n of names) {
-				if (n.toLowerCase() === name) {
-					return code;
-				}
-			}
+	for (const [code, names] of Object.entries(countries)) {
+		if (names.some(n => n.toLowerCase() === name)) {
+			return code;
 		}
 	}
 
 	// Look for inexact match
-	// NOTE: .filter() to aggregate all matches
 	const matches = Object.keys(countries)
-		.filter(code => {
-			let names = countries[code];
-
-			if (!Array.isArray(names)) {
-				names = [names];
-			}
-
-			for (const n of names) {
-				if (fuzzyCompare(name, n)) {
-					return true;
-				}
-			}
-
-			return false;
-		});
+		.filter(code =>
+			countries[code].some(n => fuzzyCompare(name, n)),
+		);
 
 	// Return only when exactly one match was found
 	//   prevents cases like "United"
@@ -91,12 +67,7 @@ export function codeToName(code) {
 		return;
 	}
 
-	const names = countries[code.toUpperCase()];
-	if (Array.isArray(names)) {
-		return names[0];
-	}
-
-	return names;
+	return countries[code.toUpperCase()]?.[0];
 }
 
 export function codeToFlag(code) {
