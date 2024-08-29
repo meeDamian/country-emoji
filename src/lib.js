@@ -28,12 +28,12 @@ export function normalizeName(name) {
 	}
 
 	// Replace & with and
-	name = name.replace(/\s*&\s*/g, ' and ');
+	name = name.replaceAll(/\s*&\s*/g, ' and ');
 
 	// Replace diacritics with their base characters
-	name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+	name = name.normalize('NFD').replaceAll(/[\u0300-\u036F]/g, '');
 
-	name = normalizeOutput(name)
+	name = normalizeOutput(name);
 
 	return name;
 }
