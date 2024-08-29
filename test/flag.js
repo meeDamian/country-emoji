@@ -49,9 +49,9 @@ test('converts less weird name notation', t => {
 	t.is(emoji, '🇻🇮', 'Should return 🇻🇮 for U.S. Virgin Islands');
 });
 
-test('converts name with weird characters', t => {
-	const emoji = flag('Åland');
-	t.is(emoji, '🇦🇽', 'Should return 🇦🇽 for Åland');
+test('converts partial name with weird characters', t => {
+	const emoji = flag('Côte');
+	t.is(emoji, '🇨🇮', `Should return 🇨🇮 for Côte d'Ivoire`);
 });
 
 test('converts name with different casing', t => {
