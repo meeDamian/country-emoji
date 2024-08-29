@@ -6,6 +6,7 @@ import {
 	FLAG_RE,
 	isCode,
 	fuzzyCompare,
+	normalizeName,
 	codeToName,
 	codeToFlag,
 	nameToCode,
@@ -50,4 +51,8 @@ test('nameToCode() is exported properly', t => {
 
 test('flagToCode() is exported properly', t => {
 	t.is(typeof flagToCode, 'function', 'flagToCode should be a function');
+});
+
+test('normalizeName() can handle undefined', t => {
+	t.is(normalizeName(undefined), undefined, 'normalizeName(undefined) should return undefined');
 });
