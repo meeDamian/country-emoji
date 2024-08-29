@@ -4,3 +4,5 @@ coverage*
 node_modules
 dist/
 .idea/
+countries.csv
+countries-*
