@@ -69,6 +69,11 @@ test('converts when `&` used in place of `and`', t => {
 	t.is(emoji, '🇹🇹', 'Should return 🇹🇹 for Trinidad and Tobago');
 });
 
+test('converts country name where substring match with other country exists', t => {
+	const emoji = flag('South Sudan');
+	t.is(emoji, '🇸🇸', 'Should return 🇸🇸for South Sudan');
+});
+
 test('fails on name conflict', t => {
 	const emoji = flag('Korea');
 	t.is(emoji, undefined, 'Should return undefined for name conflict Korea');
