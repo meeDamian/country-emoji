@@ -28,7 +28,7 @@ jobs:
       - run: npm run build
       - run: npm test
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
       - name: Coveralls
         uses: coverallsapp/github-action@v2
         with:
@@ -40,7 +40,7 @@ jobs:
     if: github.event_name == 'release'
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: 22
         registry-url: 'https://registry.npmjs.org'
