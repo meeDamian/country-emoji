@@ -1,6 +1,6 @@
 {
   "name": "country-emoji",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.2",
   "description": "Converts between country names, ISO 3166-1 codes and flag emojis.",
   "main": "dist/main.js",
   "type": "module",
