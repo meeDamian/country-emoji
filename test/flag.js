@@ -64,6 +64,11 @@ test('converts if name within string', t => {
 	t.is(emoji, '🇨🇳', 'Should return 🇨🇳 for string containing China');
 });
 
+test('converts when `&` used in place of `and`', t => {
+	const emoji = flag('Trinidad & Tobago');
+	t.is(emoji, '🇹🇹', 'Should return 🇹🇹 for Trinidad and Tobago');
+});
+
 test('fails on name conflict', t => {
 	const emoji = flag('Korea');
 	t.is(emoji, undefined, 'Should return undefined for name conflict Korea');

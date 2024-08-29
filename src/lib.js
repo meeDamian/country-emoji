@@ -8,8 +8,14 @@ export const FLAG_RE = /\uD83C[\uDDE6-\uDDFF]/;
 
 const NAME_SEP = ', ';
 
-function normalizeName(name) {
-	if (!name || !name.includes(NAME_SEP)) {
+export function normalizeName(name) {
+	if (!name) {
+		return name;
+	}
+
+	name = name.replace(/\s*&\s*/g, ' and ');
+
+	if (!name.includes(NAME_SEP)) {
 		return name;
 	}
 
@@ -27,12 +33,14 @@ export function fuzzyCompare(input, name) {
 	}
 
 	const normalizedName = normalizeName(name);
+	const normalizedInput = normalizeName(input);
 
 	// Cases like:
 	//    "British Virgin Islands" <-> "Virgin Islands, British"
 	//    "Republic of Moldova"    <-> "Moldova, Republic of"
-	if (normalizedName !== name) {
-		if (normalizedName.includes(input) || input.includes(normalizedName)) {
+	//    "Trinidad & Tobago"      <-> "Trinidad and Tobago"
+	if (normalizedName !== name || normalizedInput !== input) {
+		if (normalizedName.includes(normalizedInput) || normalizedInput.includes(normalizedName)) {
 			return true;
 		}
 	}

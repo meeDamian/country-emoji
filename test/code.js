@@ -74,6 +74,11 @@ test('converts if name within string', t => {
 	t.is(iso3166, 'CA', 'Should return CA for string containing Canada');
 });
 
+test('converts when `&` used in place of `and`', t => {
+	const iso3166 = code('Trinidad & Tobago');
+	t.is(iso3166, 'TT', 'Should return TT for Trinidad and Tobago');
+});
+
 test('fails on name conflict', t => {
 	const iso3166 = code('United');
 	t.is(iso3166, undefined, 'Should return undefined for name conflict');
