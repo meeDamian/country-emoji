@@ -1,15 +1,16 @@
 # country-emoji
 
 [![npm_svg]][npm_url]
+[![npm_alpha_svg]][npm_url]
 [![dl_url]][npm_url]
 [![coveralls_svg]][coveralls_url]
 [![codecov_svg]][codecov_url]
 [![xo_svg]][xo_url]
 [![license_svg]][license_url]
-[![tippin_svg]][tippin_url]
 
 
 [npm_svg]: https://img.shields.io/npm/v/country-emoji
+[npm_alpha_svg]: https://img.shields.io/npm/v/country-emoji/alpha
 [npm_url]: https://www.npmjs.com/package/country-emoji
 
 [dl_url]: https://img.shields.io/npm/dw/country-emoji
@@ -32,6 +33,8 @@ Converts between country names, ISO 3166-1 codes and flag emojis. **Has zero dep
 
 ```
 $ npm install --save country-emoji
+# or
+$ npm install --save country-emoji@alpha
 ```
 
 ## Usage
