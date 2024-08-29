@@ -6,6 +6,16 @@ export const CODE_RE = /^[a-z]{2}$/i;
 export const NAME_RE = /^.{2,}$/;
 export const FLAG_RE = /\uD83C[\uDDE6-\uDDFF]/;
 
+const NAME_SEP = ', ';
+
+function normalizeName(name) {
+	if (!name || !name.includes(NAME_SEP)) {
+		return name;
+	}
+
+	return name.split(NAME_SEP).reverse().join(' ');
+}
+
 export function fuzzyCompare(input, name) {
 	name = name.toLowerCase();
 
@@ -16,12 +26,13 @@ export function fuzzyCompare(input, name) {
 		return true;
 	}
 
+	const normalizedName = normalizeName(name);
+
 	// Cases like:
 	//    "British Virgin Islands" <-> "Virgin Islands, British"
 	//    "Republic of Moldova"    <-> "Moldova, Republic of"
-	if (name.includes(',')) {
-		const reversedName = name.split(', ').reverse().join(' ');
-		if (reversedName.includes(input) || input.includes(reversedName)) {
+	if (normalizedName !== name) {
+		if (normalizedName.includes(input) || input.includes(normalizedName)) {
 			return true;
 		}
 	}
@@ -67,7 +78,7 @@ export function codeToName(code) {
 		return;
 	}
 
-	return countries[code.toUpperCase()]?.[0];
+	return normalizeName(countries[code.toUpperCase()]?.[0]);
 }
 
 export function codeToFlag(code) {
@@ -80,9 +91,7 @@ export function codeToFlag(code) {
 		return;
 	}
 
-	if (String && String.fromCodePoint) {
-		return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.codePointAt(0)));
-	}
+	return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.codePointAt(0)));
 }
 
 export function flagToCode(flag) {

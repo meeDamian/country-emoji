@@ -42,6 +42,11 @@ test('returns first name from array for code US', t => {
 	t.is(country, 'United States', 'Should return United States for code US');
 });
 
+test('returns normalized name', t => {
+	const country = name('VG');
+	t.is(country, 'British Virgin Islands', 'Should return British Virgin Islands for code VG');
+});
+
 test('returns correct name for Macedonian country code', t => {
 	const country = name('MK');
 	t.is(country, 'Republic of North Macedonia', 'Should return correct name for code MK');
