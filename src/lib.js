@@ -1,14 +1,45 @@
-'use strict';
+import countries from '../countries.json' with { type: 'json' };
 
-const countries = require('../countries.json');
+export const MAGIC_NUMBER = 127_462 - 65; // Base offset for flag emoji calculation
 
-const MAGIC_NUMBER = 127462 - 65;
+export const CODE_RE = /^[a-z]{2}$/i;
+export const NAME_RE = /^.{2,}$/;
+export const FLAG_RE = /\uD83C[\uDDE6-\uDDFF]/;
 
-const CODE_RE = /^[a-z]{2}$/i;
-const NAME_RE = /^.{2,}$/;
-const FLAG_RE = /\uD83C[\uDDE6-\uDDFF]/;
+const NAME_SEP = ', ';
 
-function fuzzyCompare(input, name) {
+// Turn returned names from ex. "Virgin Islands, British" into "British Virgin Islands"
+export function normalizeOutput(name) {
+	if (!name) {
+		return name;
+	}
+
+	if (name.includes(NAME_SEP)) {
+		name = name.split(NAME_SEP).reverse().join(' ');
+	}
+
+	return name;
+}
+
+// For all non-empty strings, strip out diacritics, replace & with 'and', and turn "weird form" in
+export function normalizeName(name) {
+	if (!name) {
+		return name;
+	}
+
+	// Replace & with and
+	name = name.replaceAll(/\s*&\s*/g, ' and ');
+
+	// Replace diacritics with their base characters
+	name = name.normalize('NFD').replaceAll(/[\u0300-\u036F]/g, '');
+
+	name = normalizeOutput(name);
+
+	return name;
+}
+
+// Compare two names, allowing for differences
+export function fuzzyCompare(input, name) {
 	name = name.toLowerCase();
 
 	// Cases like:
@@ -18,12 +49,15 @@ function fuzzyCompare(input, name) {
 		return true;
 	}
 
+	const normalizedName = normalizeName(name);
+	const normalizedInput = normalizeName(input);
+
 	// Cases like:
 	//    "British Virgin Islands" <-> "Virgin Islands, British"
 	//    "Republic of Moldova"    <-> "Moldova, Republic of"
-	if (name.includes(',')) {
-		const reversedName = name.split(', ').reverse().join(' ');
-		if (reversedName.includes(input) || input.includes(reversedName)) {
+	//    "Trinidad & Tobago"      <-> "Trinidad and Tobago"
+	if (normalizedName !== name || normalizedInput !== input) {
+		if (normalizedName.includes(normalizedInput) || normalizedInput.includes(normalizedName)) {
 			return true;
 		}
 	}
@@ -31,13 +65,13 @@ function fuzzyCompare(input, name) {
 	return false;
 }
 
-function isCode(code) {
+export function isCode(code) {
 	code = code.toUpperCase();
 
 	return countries[code] ? code : undefined;
 }
 
-function nameToCode(name) {
+export function nameToCode(name) {
 	if (!name || !NAME_RE.test(name)) {
 		return;
 	}
@@ -45,41 +79,17 @@ function nameToCode(name) {
 	name = name.trim().toLowerCase();
 
 	// Look for exact match
-	// NOTE: normal loop to terminate ASAP
-	for (const code in countries) {
-		if ({}.hasOwnProperty.call(countries, code)) {
-			let names = countries[code];
-
-			if (!Array.isArray(names)) {
-				names = [names];
-			}
-
-			for (const n of names) {
-				if (n.toLowerCase() === name) {
-					return code;
-				}
-			}
+	for (const [code, names] of Object.entries(countries)) {
+		if (names.some(n => n.toLowerCase() === name)) {
+			return code;
 		}
 	}
 
 	// Look for inexact match
-	// NOTE: .filter() to aggregate all matches
 	const matches = Object.keys(countries)
-		.filter(code => {
-			let names = countries[code];
-
-			if (!Array.isArray(names)) {
-				names = [names];
-			}
-
-			for (const n of names) {
-				if (fuzzyCompare(name, n)) {
-					return true;
-				}
-			}
-
-			return false;
-		});
+		.filter(code =>
+			countries[code].some(n => fuzzyCompare(name, n)),
+		);
 
 	// Return only when exactly one match was found
 	//   prevents cases like "United"
@@ -88,20 +98,15 @@ function nameToCode(name) {
 	}
 }
 
-function codeToName(code) {
+export function codeToName(code) {
 	if (!code || !CODE_RE.test(code)) {
 		return;
 	}
 
-	const names = countries[code.toUpperCase()];
-	if (Array.isArray(names)) {
-		return names[0];
-	}
-
-	return names;
+	return normalizeOutput(countries[code.toUpperCase()]?.[0]);
 }
 
-function codeToFlag(code) {
+export function codeToFlag(code) {
 	if (!code || !CODE_RE.test(code)) {
 		return;
 	}
@@ -111,26 +116,24 @@ function codeToFlag(code) {
 		return;
 	}
 
-	if (String && String.fromCodePoint) {
-		return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.charCodeAt(0)));
-	}
+	return String.fromCodePoint(...[...code].map(c => MAGIC_NUMBER + c.codePointAt(0)));
 }
 
-function flagToCode(flag) {
+export function flagToCode(flag) {
 	if (!flag || !FLAG_RE.test(flag)) {
 		return;
 	}
 
-	return isCode([...flag].map(c => c.codePointAt(0) - MAGIC_NUMBER).map(c => String.fromCharCode(c)).join(''));
+	return isCode([...flag].map(c => c.codePointAt(0) - MAGIC_NUMBER).map(c => String.fromCodePoint(c)).join(''));
 }
 
 // Takes either emoji or full name
-function code(input) {
+export function code(input) {
 	return flagToCode(input) || nameToCode(input);
 }
 
 // Takes either code or full name
-function flag(input) {
+export function flag(input) {
 	if (!CODE_RE.test(input) || input === 'UK') {
 		input = nameToCode(input);
 	}
@@ -139,7 +142,7 @@ function flag(input) {
 }
 
 // Takes either emoji or code
-function name(input) {
+export function name(input) {
 	if (FLAG_RE.test(input)) {
 		input = flagToCode(input);
 	}
@@ -147,24 +150,4 @@ function name(input) {
 	return codeToName(input);
 }
 
-module.exports = {
-	MAGIC_NUMBER,
-
-	CODE_RE,
-	NAME_RE,
-	FLAG_RE,
-
-	code,
-	flag,
-	name,
-
-	countries,
-
-	isCode,
-	fuzzyCompare,
-
-	codeToName,
-	codeToFlag,
-	nameToCode,
-	flagToCode
-};
+export {countries};

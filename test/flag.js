@@ -1,34 +1,19 @@
-const test = require('ava');
+import test from 'ava';
+import {flag} from '../src/main.js';
 
-test('[main.js].flag() is exported properly', t => {
-	const fn = require('../src/main.js').flag;
-
-	if (!fn || typeof fn !== 'function') {
-		t.fail();
-	}
-
-	t.pass();
+test('[main.js].flag() is exported properly', async t => {
+	const {flag: fn} = await import('../src/main.js');
+	t.is(typeof fn, 'function', 'flag should be a function');
 });
 
-test('[lib.js].flag() is exported properly', t => {
-	const fn = require('../src/lib.js').flag;
-
-	if (!fn || typeof fn !== 'function') {
-		t.fail();
-	}
-
-	t.pass();
+test('[lib.js].flag() is exported properly', async t => {
+	const {flag: fn} = await import('../src/lib.js');
+	t.is(typeof fn, 'function', 'flag should be a function');
 });
-
-const {flag} = require('../src/lib.js');
 
 test('fails if empty', t => {
 	const emoji = flag();
-	if (emoji !== undefined) {
-		t.fail(`${emoji} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(emoji, undefined, 'Should return undefined for empty input');
 });
 
 //
@@ -36,110 +21,72 @@ test('fails if empty', t => {
 //
 test('converts name', t => {
 	const emoji = flag('Taiwan');
-	if (!emoji || emoji !== '🇹🇼') {
-		t.fail(`${emoji} instead of 🇹🇼`);
-	}
-
-	t.pass();
+	t.is(emoji, '🇹🇼', 'Should return 🇹🇼 for Taiwan');
 });
 
 test('converts short name', t => {
 	const emoji = flag('UK');
-	if (!emoji || emoji !== '🇬🇧') {
-		t.fail(`${emoji} instead of 🇬🇧`);
-	}
-
-	t.pass();
+	t.is(emoji, '🇬🇧', 'Should return 🇬🇧 for UK');
 });
 
 test('converts partial name', t => {
 	const emoji = flag('Czech');
-	if (!emoji || emoji !== '🇨🇿') {
-		t.fail(`${emoji} instead of 🇨🇿`);
-	}
-
-	t.pass();
+	t.is(emoji, '🇨🇿', 'Should return 🇨🇿 for Czechia');
 });
 
 test('converts alternative name', t => {
 	const emoji = flag('North Korea');
-	if (!emoji || emoji !== '🇰🇵') {
-		t.fail(`${emoji} instead of 🇰🇵`);
-	}
-
-	t.pass();
+	t.is(emoji, '🇰🇵', 'Should return 🇰🇵 for North Korea');
 });
 
 test('converts weird name notation', t => {
 	const emoji = flag('Virgin Islands, British');
-	if (!emoji || emoji !== '🇻🇬') {
-		t.fail(`${emoji} instead of 🇻🇬`);
-	}
-
-	t.pass();
+	t.is(emoji, '🇻🇬', 'Should return 🇻🇬 for Virgin Islands, British');
 });
 
 test('converts less weird name notation', t => {
 	const emoji = flag('U.S. Virgin Islands');
-	if (!emoji || emoji !== '🇻🇮') {
-		t.fail(`${emoji} instead of 🇻🇮`);
-	}
-
-	t.pass();
+	t.is(emoji, '🇻🇮', 'Should return 🇻🇮 for U.S. Virgin Islands');
 });
 
-test('converts name with weird characters', t => {
-	const emoji = flag('Åland');
-	if (!emoji || emoji !== '🇦🇽') {
-		t.fail(`${emoji} instead of 🇦🇽`);
-	}
-
-	t.pass();
+test('converts partial name with weird characters', t => {
+	const emoji = flag('Côte');
+	t.is(emoji, '🇨🇮', 'Should return 🇨🇮 for Côte d\'Ivoire');
 });
 
 test('converts name with different casing', t => {
 	const emoji = flag('EGYPT');
-	if (!emoji || emoji !== '🇪🇬') {
-		t.fail(`${emoji} instead of 🇪🇬`);
-	}
-
-	t.pass();
+	t.is(emoji, '🇪🇬', 'Should return 🇪🇬 for EGYPT');
 });
 
 test('converts if name within string', t => {
 	const emoji = flag('China number two!');
-	if (!emoji || emoji !== '🇨🇳') {
-		t.fail(`${emoji} instead of 🇨🇳`);
-	}
+	t.is(emoji, '🇨🇳', 'Should return 🇨🇳 for string containing China');
+});
 
-	t.pass();
+test('converts when `&` used in place of `and`', t => {
+	const emoji = flag('Trinidad & Tobago');
+	t.is(emoji, '🇹🇹', 'Should return 🇹🇹 for Trinidad and Tobago');
+});
+
+test('converts country name where substring match with other country exists', t => {
+	const emoji = flag('South Sudan');
+	t.is(emoji, '🇸🇸', 'Should return 🇸🇸 for South Sudan');
 });
 
 test('fails on name conflict', t => {
 	const emoji = flag('Korea');
-	if (emoji !== undefined) {
-		t.fail(`${emoji} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(emoji, undefined, 'Should return undefined for name conflict Korea');
 });
 
 test('fails if two names in string', t => {
 	const emoji = flag('Poland & Hungary');
-	if (emoji !== undefined) {
-		t.fail(`${emoji} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(emoji, undefined, 'Should return undefined for string containing two names');
 });
 
 test('fails on no match', t => {
 	const emoji = flag('there is no country named like that');
-	if (emoji !== undefined) {
-		t.fail(`${emoji} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(emoji, undefined, 'Should return undefined for no match');
 });
 
 //
@@ -147,20 +94,12 @@ test('fails on no match', t => {
 //
 test('converts if existing code given', t => {
 	const emoji = flag('MA');
-	if (!emoji || emoji !== '🇲🇦') {
-		t.fail(`${emoji} instead of 🇲🇦`);
-	}
-
-	t.pass();
+	t.is(emoji, '🇲🇦', 'Should return 🇲🇦 for code MA');
 });
 
 test('fails if not existing code given', t => {
 	const emoji = flag('XX');
-	if (emoji) {
-		t.fail(`${emoji} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(emoji, undefined, 'Should return undefined for non-existing code XX');
 });
 
 //
@@ -168,9 +107,5 @@ test('fails if not existing code given', t => {
 //
 test('fails if emoji given', t => {
 	const emoji = flag('🇪🇬');
-	if (emoji !== undefined) {
-		t.fail(`${emoji} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(emoji, undefined, 'Should return undefined if emoji is given as input');
 });

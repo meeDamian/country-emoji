@@ -27,12 +27,11 @@ declare module 'country-emoji' {
 	export function name(input: string): string | undefined;
 
 	/**
-	* Object that contains every single countries' name and language name.
+	* Object that contains every single country's name and language name.
+	* The value is an array of at least one string.
 	*
 	* @example {"BG": ["Bulgaria", "Bulgarian"]}; countries["BG"] would be ["Bulgaria", "Bulgarian"]
 	*
 	*/
-	export const countries: {
-		[key: string]: [string, string];
-	};
+	export const countries: Record<string, [string, ...string[]]>;
 }

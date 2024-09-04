@@ -1,8 +1,9 @@
 {
   "name": "country-emoji",
-  "version": "1.5.6",
+  "version": "2.0.0-alpha.2",
   "description": "Converts between country names, ISO 3166-1 codes and flag emojis.",
   "main": "dist/main.js",
+  "type": "module",
   "files": [
     "dist/main.js",
     "dist/lib.js",
@@ -11,8 +12,10 @@
   ],
   "types": "./index.d.ts",
   "scripts": {
-    "test": "xo && check-dts && nyc ava && nyc report --reporter=text-lcov > coverage.lcov",
+    "lint": "xo && check-dts",
     "build": "babel src -d dist",
+    "test": "c8 ava && c8 report --reporter=text-lcov > coverage.lcov",
+    "test-ava": "ava",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -34,16 +37,21 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.10.5",
+    "@babel/eslint-parser": "^7.25.1",
+    "@babel/plugin-syntax-import-attributes": "^7.24.7",
     "@babel/preset-env": "^7.10.4",
-    "ava": "^3.10.1",
-    "check-dts": "^0.4.4",
-    "nyc": "^15.1.0",
-    "xo": "^0.38.2"
+    "ava": "^6.1.3",
+    "c8": "^10.1.2",
+    "check-dts": "^0.8.2",
+    "xo": "^0.59.3"
   },
   "xo": {
-    "esnext": true,
+    "parser": "@babel/eslint-parser",
     "rules": {
-      "@typescript-eslint/consistent-indexed-object-style": 0
+      "unicorn/prefer-export-from": "off",
+      "unicorn/prevent-abbreviations": "off",
+      "unicorn/no-lonely-if": "off",
+      "no-use-extend-native/no-use-extend-native": "off"
     }
   }
 }

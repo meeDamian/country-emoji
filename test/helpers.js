@@ -1,97 +1,58 @@
-const test = require('ava');
-
-const {
+import test from 'ava';
+import {
 	MAGIC_NUMBER,
-
 	CODE_RE,
 	NAME_RE,
 	FLAG_RE,
-
 	isCode,
 	fuzzyCompare,
-
+	normalizeName,
 	codeToName,
 	codeToFlag,
 	nameToCode,
-	flagToCode
-} = require('../src/lib.js');
+	flagToCode,
+} from '../src/lib.js';
 
 test('MAGIC_NUMBER is exported properly', t => {
-	if (!MAGIC_NUMBER || typeof MAGIC_NUMBER !== 'number') {
-		t.fail();
-	}
-
-	t.pass();
+	t.is(typeof MAGIC_NUMBER, 'number', 'MAGIC_NUMBER should be a number');
 });
 
 test('CODE_RE is exported properly', t => {
-	if (!CODE_RE || !(CODE_RE instanceof RegExp)) {
-		t.fail();
-	}
-
-	t.pass();
+	t.true(CODE_RE instanceof RegExp, 'CODE_RE should be a RegExp');
 });
 
 test('NAME_RE is exported properly', t => {
-	if (!NAME_RE || !(NAME_RE instanceof RegExp)) {
-		t.fail();
-	}
-
-	t.pass();
+	t.true(NAME_RE instanceof RegExp, 'NAME_RE should be a RegExp');
 });
 
 test('FLAG_RE is exported properly', t => {
-	if (!FLAG_RE || !(FLAG_RE instanceof RegExp)) {
-		t.fail();
-	}
-
-	t.pass();
+	t.true(FLAG_RE instanceof RegExp, 'FLAG_RE should be a RegExp');
 });
 
 test('isCode() is exported properly', t => {
-	if (!isCode || typeof isCode !== 'function') {
-		t.fail();
-	}
-
-	t.pass();
+	t.is(typeof isCode, 'function', 'isCode should be a function');
 });
 
 test('fuzzyCompare() is exported properly', t => {
-	if (!fuzzyCompare || typeof fuzzyCompare !== 'function') {
-		t.fail();
-	}
-
-	t.pass();
+	t.is(typeof fuzzyCompare, 'function', 'fuzzyCompare should be a function');
 });
 
 test('codeToName() is exported properly', t => {
-	if (!codeToName || typeof codeToName !== 'function') {
-		t.fail();
-	}
-
-	t.pass();
+	t.is(typeof codeToName, 'function', 'codeToName should be a function');
 });
 
 test('codeToFlag() is exported properly', t => {
-	if (!codeToFlag || typeof codeToFlag !== 'function') {
-		t.fail();
-	}
-
-	t.pass();
+	t.is(typeof codeToFlag, 'function', 'codeToFlag should be a function');
 });
 
 test('nameToCode() is exported properly', t => {
-	if (!nameToCode || typeof nameToCode !== 'function') {
-		t.fail();
-	}
-
-	t.pass();
+	t.is(typeof nameToCode, 'function', 'nameToCode should be a function');
 });
 
 test('flagToCode() is exported properly', t => {
-	if (!flagToCode || typeof flagToCode !== 'function') {
-		t.fail();
-	}
+	t.is(typeof flagToCode, 'function', 'flagToCode should be a function');
+});
 
-	t.pass();
+test('normalizeName() can handle undefined', t => {
+	t.is(normalizeName(undefined), undefined, 'normalizeName(undefined) should return undefined');
 });

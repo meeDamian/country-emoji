@@ -1,131 +1,86 @@
-const test = require('ava');
+import test from 'ava';
+import {name} from '../src/main.js';
 
-test('[main.js].name() is exported properly', t => {
-	const fn = require('../src/main.js').name;
-
-	if (!fn || typeof fn !== 'function') {
-		t.fail();
-	}
-
-	t.pass();
+test('[main.js].name() is exported properly', async t => {
+	const {name: fn} = await import('../src/main.js');
+	t.is(typeof fn, 'function', 'name should be a function');
 });
 
-test('[lib.js].name() is exported properly', t => {
-	const fn = require('../src/lib.js').name;
-
-	if (!fn || typeof fn !== 'function') {
-		t.fail();
-	}
-
-	t.pass();
+test('[lib.js].name() is exported properly', async t => {
+	const {name: fn} = await import('../src/lib.js');
+	t.is(typeof fn, 'function', 'name should be a function');
 });
 
-const {name} = require('../src/lib.js');
-
-test('fails if empty', t => {
+test('returns undefined if empty', t => {
 	const country = name();
-	if (country !== undefined) {
-		t.fail(`${country} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(country, undefined, 'Should return undefined for empty input');
 });
 
 //
 // from country NAMES
 //
-test('fails if country name given', t => {
+test('fails if full country name given', t => {
 	const country = name('Lithuania');
-	if (country !== undefined) {
-		t.fail(`${country} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(country, undefined, 'Should return undefined for full country name');
 });
 
 test('fails if short country name given', t => {
 	const country = name('UK');
-	if (country !== undefined) {
-		t.fail(`${country} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(country, undefined, 'Should return undefined for short country name');
 });
 
 //
 // from country CODES
 //
-test('converts if valid code given', t => {
+test('returns correct name if valid code is given', t => {
 	const country = name('LY');
-	if (country !== 'Libyan Arab Jamahiriya') {
-		t.fail(`${country} instead of Libyan Arab Jamahiriya`);
-	}
-
-	t.pass();
+	t.is(country, 'Libyan Arab Jamahiriya', 'Should return correct country name for code LY');
 });
 
-test('returns first name from array', t => {
+test('returns first name from array for code US', t => {
 	const country = name('US');
-	if (country !== 'United States') {
-		t.fail(`${country} instead of United States`);
-	}
-
-	t.pass();
+	t.is(country, 'United States', 'Should return United States for code US');
 });
 
-test('correct macedonian coutry name', t => {
+test('returns normalized name', t => {
+	const country = name('VG');
+	t.is(country, 'British Virgin Islands', 'Should return British Virgin Islands for code VG');
+});
+
+test('returns correct name for Macedonian country code', t => {
 	const country = name('MK');
-	if (country !== 'Republic of North Macedonia') {
-		t.fail(`${country} instead of Republic of North Macedonia`);
-	}
-
-	t.pass();
+	t.is(country, 'Republic of North Macedonia', 'Should return correct name for code MK');
 });
 
-test('fails if invalid code given', t => {
+test('returns name with diacritics for code TR', t => {
+	const country = name('TR');
+	t.is(country, 'Türkiye', 'Should return correct name for code TR');
+});
+
+test('returns undefined if invalid code is given', t => {
 	const country = name('YY');
-	if (country !== undefined) {
-		t.fail(`${country} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(country, undefined, 'Should return undefined for invalid code YY');
 });
 
-test('fails if other chars given', t => {
+test('returns undefined if non-alphabetic characters are given', t => {
 	const country = name('__');
-	if (country !== undefined) {
-		t.fail(`${country} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(country, undefined, 'Should return undefined for invalid characters');
 });
 
 //
 // from country FLAG
 //
-test('converts if valid flag given', t => {
+test('returns correct name if valid flag is given', t => {
 	const country = name('🇬🇧');
-	if (country !== 'United Kingdom') {
-		t.fail(`${country} instead of United Kingdom`);
-	}
-
-	t.pass();
+	t.is(country, 'United Kingdom', 'Should return United Kingdom for valid flag');
 });
 
-test('fails if invalid flag given', t => {
+test('returns undefined if invalid flag is given', t => {
 	const country = name('🇬🇿');
-	if (country !== undefined) {
-		t.fail(`${country} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(country, undefined, 'Should return undefined for invalid flag');
 });
 
-test('fails if some other emoji given', t => {
+test('returns undefined if unrelated emoji is given', t => {
 	const country = name('💩');
-	if (country !== undefined) {
-		t.fail(`${country} instead of undefined`);
-	}
-
-	t.pass();
+	t.is(country, undefined, 'Should return undefined for unrelated emoji');
 });
