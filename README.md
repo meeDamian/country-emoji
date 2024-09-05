@@ -93,23 +93,34 @@ Object.keys(countries).join(", ")
 
 Check out the following:
 
-* **Swift:** [SwiftFlags](https://github.com/BubiDevs/SwiftFlags) (ref: [#16](https://github.com/meeDamian/country-emoji/issues/16))
-* **Rust:** [country-emoji](https://github.com/leodutra/country-emoji) [[crates.io]] (ref: [#20](https://github.com/meeDamian/country-emoji/issues/20))
-* **Python:** [country-emoji](https://github.com/Nnonexistent/country-emoji) [[PyPI]] (ref: [#40](https://github.com/meeDamian/country-emoji/issues/40))
+language | repo | package manager | issue
+-:|-|:-:|:-:
+**Swift**  | [SwiftFlags][swift]     |             | [#16]
+**Rust**   | [country-emoji][rust]   | [crates.io] | [#20]
+**Python** | [country-emoji][python] | [PyPI]      | [#40]
 
+[swift]: https://github.com/BubiDevs/SwiftFlags
+[#16]: https://github.com/meeDamian/country-emoji/issues/16
+
+[rust]: https://github.com/leodutra/country-emoji
 [crates.io]: https://crates.io/crates/country-emoji
+[#20]: https://github.com/meeDamian/country-emoji/issues/20
+
+[python]: https://github.com/Nnonexistent/country-emoji
 [PyPI]: https://pypi.org/project/country-emoji/
+[#40]: https://github.com/meeDamian/country-emoji/issues/40
 
 PS. Happy to add more here :).
 
+### Want just data?
+
+Check out [REST Countries](https://restcountries.com/) project (with complete JSON [here](https://restcountries.com/v3.1/all)).
+
 ## Bugs and feedback
 
-If you discover a bug please report it [here](https://github.com/meeDamian/country-emoji/issues/new).  Express gratitude [here](https://donate.meedamian.com).
+If you discover a bug please report it [here](https://github.com/meeDamian/country-emoji/issues/new).
 
-Mail me at bugs@meedamian.com, or on twitter [@meeDamian](http://twitter.com/meedamian).
-
-![codecov.io](https://codecov.io/github/meeDamian/country-emoji/branch.svg?branch=master)
-
+Mail me at bugs@meedamian.com, or on 𝕏 [@meeDamian](http://x.com/meedamian).
 
 ## License
 
