@@ -67,6 +67,14 @@ test('returns undefined if non-alphabetic characters are given', t => {
 	t.is(country, undefined, 'Should return undefined for invalid characters');
 });
 
+test('returns country name for every country code in JSON', async t => {
+	const countries = (await import('../countries.json', {with: {type: 'json'}})).default;
+
+	Object.keys(countries).forEach(code => {
+		t.not(name(code), undefined, `Should return correct name for code ${code}`);
+	});
+});
+
 //
 // from country FLAG
 //

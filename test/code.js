@@ -94,6 +94,14 @@ test('fails on no match', t => {
 	t.is(iso3166, undefined, 'Should return undefined for no matching country name');
 });
 
+test('returns country code for every country name in JSON', async t => {
+	const countries = (await import('../countries.json', {with: {type: 'json'}})).default;
+
+	Object.values(countries).flat().forEach(name => {
+		t.not(code(name), undefined, `Should return code for name ${name}`);
+	});
+});
+
 //
 // from country CODES
 //
