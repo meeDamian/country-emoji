@@ -95,11 +95,11 @@ test('fails on no match', t => {
 });
 
 test('returns country code for every country name in JSON', async t => {
-	const countries = (await import('../countries.json', {with: {type: 'json'}})).default;
+	const {default: countries} = await import('../countries.json', {with: {type: 'json'}});
 
-	Object.values(countries).flat().forEach(name => {
+	for (const name of Object.values(countries).flat()) {
 		t.not(code(name), undefined, `Should return code for name ${name}`);
-	});
+	}
 });
 
 //
