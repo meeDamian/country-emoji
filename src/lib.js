@@ -127,12 +127,30 @@ export function flagToCode(flag) {
 	return isCode([...flag].map(c => c.codePointAt(0) - MAGIC_NUMBER).map(c => String.fromCodePoint(c)).join(''));
 }
 
-// Takes either emoji or full name
+/**
+ * Converts a country flag emoji or country name to its corresponding ISO 3166-1 alpha-2 country code.
+ *
+ * @param {string} input - A country flag emoji or full country name.
+ * @returns {string|undefined} The country code (e.g., 'US') if found, otherwise `undefined`.
+ *
+ * @example
+ * code('🇨🇦'); // Returns 'CA'
+ * code('Canada'); // Returns 'CA'
+ */
 export function code(input) {
 	return flagToCode(input) || nameToCode(input);
 }
 
-// Takes either code or full name
+/**
+ * Converts a country code or country name to its corresponding flag emoji.
+ *
+ * @param {string} input - A country code (e.g., 'US') or full country name.
+ * @returns {string|undefined} The country flag emoji (e.g., '🇺🇸') if found, otherwise `undefined`.
+ *
+ * @example
+ * flag('US'); // Returns '🇺🇸'
+ * flag('United States'); // Returns '🇺🇸'
+ */
 export function flag(input) {
 	if (!CODE_RE.test(input) || input === 'UK') {
 		input = nameToCode(input);
@@ -141,7 +159,16 @@ export function flag(input) {
 	return codeToFlag(input);
 }
 
-// Takes either emoji or code
+/**
+ * Converts a country flag emoji or country code to its corresponding country name.
+ *
+ * @param {string} input - A country flag emoji or ISO 3166-1 alpha-2 country code.
+ * @returns {string|undefined} The country name (e.g., 'United States') if found, otherwise `undefined`.
+ *
+ * @example
+ * name('🇺🇸'); // Returns 'United States'
+ * name('US'); // Returns 'United States'
+ */
 export function name(input) {
 	if (FLAG_RE.test(input)) {
 		input = flagToCode(input);
@@ -150,4 +177,12 @@ export function name(input) {
 	return codeToName(input);
 }
 
+/**
+ * An object containing all country codes mapped to their respective country names and aliases.
+ *
+ * @type {Object.<string, string[]>}
+ *
+ * @example
+ * countries['CA']; // Returns ['Canada', 'Canadian']
+ */
 export {countries};

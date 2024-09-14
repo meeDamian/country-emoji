@@ -29,20 +29,27 @@
 
 Converts between country names, ISO 3166-1 codes and flag emojis. **Has zero dependencies.**
 
-## Install
+## Installation
 
-```
-$ npm install --save country-emoji
-# or
-$ npm install --save country-emoji@beta
+Install the package via npm:
+
+```bash
+# Stable version
+npm install country-emoji
+
+# Or the beta version
+npm install country-emoji@beta
 ```
 
 ## Usage
 
 ```js
-const {flag, code, name, countries} = require('country-emoji');
-// or (beta)
-import {flag, code, name, countries} from 'country-emoji';
+// CommonJS
+const { flag, code, name, countries } = require('country-emoji');
+
+// ES Modules (if using v2+ version)
+import { flag, code, name, countries } from 'country-emoji';
+
 
 flag('CL')
  // ~> 🇨🇱
