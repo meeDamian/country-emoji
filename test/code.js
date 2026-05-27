@@ -44,6 +44,11 @@ test('converts weird name notation', t => {
 	t.is(iso3166, 'IR', 'Should return IR for Iran, Islamic Republic Of');
 });
 
+test('converts Democratic Republic of the Congo', t => {
+	const iso3166 = code('Democratic Republic of the Congo');
+	t.is(iso3166, 'CD', 'Should return CD for Democratic Republic of the Congo');
+});
+
 test('converts new macedonian name', t => {
 	const iso3166 = code('The Former Yugoslav Republic of Macedonia');
 	t.is(iso3166, 'MK', 'Should return MK for The Former Yugoslav Republic of Macedonia');
