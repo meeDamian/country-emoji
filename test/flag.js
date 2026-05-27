@@ -29,6 +29,11 @@ test('converts short name', t => {
 	t.is(emoji, '🇬🇧', 'Should return 🇬🇧 for UK');
 });
 
+test('converts Saint abbreviation', t => {
+	const emoji = flag('St Kitts & Nevis');
+	t.is(emoji, '🇰🇳', 'Should return 🇰🇳 for St Kitts & Nevis');
+});
+
 test('converts partial name', t => {
 	const emoji = flag('Czech');
 	t.is(emoji, '🇨🇿', 'Should return 🇨🇿 for Czechia');

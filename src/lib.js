@@ -30,6 +30,9 @@ export function normalizeName(name) {
 	// Replace & with and
 	name = name.replaceAll(/\s*&\s*/g, ' and ');
 
+	// Replace common Saint abbreviation
+	name = name.replaceAll(/\bst\.?\s+/gi, 'saint ');
+
 	// Replace diacritics with their base characters
 	name = name.normalize('NFD').replaceAll(/[\u0300-\u036F]/g, '');
 
