@@ -52,6 +52,11 @@ test('returns correct name for Macedonian country code', t => {
 	t.is(country, 'Republic of North Macedonia', 'Should return correct name for code MK');
 });
 
+test('returns name for Sark country code', t => {
+	const country = name('CQ');
+	t.is(country, 'Sark', 'Should return Sark for code CQ');
+});
+
 test('returns name with diacritics for code TR', t => {
 	const country = name('TR');
 	t.is(country, 'Türkiye', 'Should return correct name for code TR');
