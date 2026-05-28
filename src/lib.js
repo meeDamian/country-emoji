@@ -1,10 +1,10 @@
-import countries from '../countries.json' with { type: 'json' };
+import countries from '../countries.json' with {type: 'json'};
 
 export const MAGIC_NUMBER = 127_462 - 65; // Base offset for flag emoji calculation
 
-export const CODE_RE = /^[a-z]{2}$/i;
-export const NAME_RE = /^.{2,}$/;
-export const FLAG_RE = /\uD83C[\uDDE6-\uDDFF]/;
+export const CODE_RE = /^[a-z]{2}$/iv;
+export const NAME_RE = /^.{2,}$/v;
+export const FLAG_RE = /\p{Regional_Indicator}{2}/v;
 
 const NAME_SEP = ', ';
 
@@ -15,7 +15,7 @@ export function normalizeOutput(name) {
 	}
 
 	if (name.includes(NAME_SEP)) {
-		name = name.split(NAME_SEP).reverse().join(' ');
+		name = name.split(NAME_SEP).toReversed().join(' ');
 	}
 
 	return name;
@@ -28,13 +28,13 @@ export function normalizeName(name) {
 	}
 
 	// Replace & with and
-	name = name.replaceAll(/\s*&\s*/g, ' and ');
+	name = name.replaceAll(/\s*&\s*/gv, ' and ');
 
 	// Replace common Saint abbreviation
-	name = name.replaceAll(/\bst\.?\s+/gi, 'saint ');
+	name = name.replaceAll(/\bst\.?\s+/giv, 'saint ');
 
 	// Replace diacritics with their base characters
-	name = name.normalize('NFD').replaceAll(/[\u0300-\u036F]/g, '');
+	name = name.normalize('NFD').replaceAll(/[\u0300-\u036F]/gv, '');
 
 	name = normalizeOutput(name);
 
@@ -90,9 +90,7 @@ export function nameToCode(name) {
 
 	// Look for inexact match
 	const matches = Object.keys(countries)
-		.filter(code =>
-			countries[code].some(n => fuzzyCompare(name, n)),
-		);
+		.filter(code => countries[code].some(n => fuzzyCompare(name, n)));
 
 	// Return only when exactly one match was found
 	//   prevents cases like "United"

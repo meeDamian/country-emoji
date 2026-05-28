@@ -16,20 +16,23 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 20, 22 ]
+        node-version: [22, 24]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
+          cache: npm
       - run: npm ci
       - run: npm run lint
       - run: npm run build
       - run: npm test
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        if: matrix.node-version == 24
+        uses: codecov/codecov-action@v6
       - name: Coveralls
+        if: matrix.node-version == 24
         uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -38,22 +41,24 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
+    permissions:
+      id-token: write   # Required for OIDC + npm provenance
+      contents: read
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-node@v6
       with:
-        node-version: 22
+        node-version: 24
         registry-url: 'https://registry.npmjs.org'
+        cache: npm
     - run: npm ci
     - run: npm run build
     - name: Publish to npm
       run: |
         if [[ "${{ github.ref }}" == *-beta* ]]; then
-          npm publish --tag beta
+          npm publish --tag beta --provenance
         elif [[ "${{ github.ref }}" == *-alpha* ]]; then
-          npm publish --tag alpha
+          npm publish --tag alpha --provenance
         else
-          npm publish
+          npm publish --provenance
         fi
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
