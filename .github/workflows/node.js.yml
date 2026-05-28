@@ -42,8 +42,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
     permissions:
+      id-token: write   # Required for OIDC + npm provenance
       contents: read
-      id-token: write
     steps:
     - uses: actions/checkout@v6
     - uses: actions/setup-node@v6
@@ -62,5 +62,3 @@ jobs:
         else
           npm publish --provenance
         fi
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
